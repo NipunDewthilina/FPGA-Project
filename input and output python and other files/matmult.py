@@ -4,6 +4,7 @@ Created on Sun Jun 13 20:39:50 2021
 
 @author: Nipun D
 """
+import numpy as np
 
 #Matrix 1 input
 R = int(input("Enter the number of rows in square matrix:"))
@@ -37,13 +38,32 @@ for i in range(R):
  
     resultant.append(row)
  
-print("Matrix Multiplication: ")
+# print("Matrix Multiplication method 1: ")
  
-# perform matrix multiplication
-# using nested for loops
+# # perform matrix multiplication
+# # using nested for loops
+# for i in range(R):
+#     for j in range(R):
+#         for k in range(R) :
+#             resultant[i][j] += matrix_1[i][k] * matrix_2[k][j] 
+            
+# print(resultant)
+
+print("Matrix Multiplication method 2: ")
+
+#Get the transpose of matrix 1
+
+numpy_array = np.array(matrix_1)
+transpose = numpy_array.T
+matrix_1_t = transpose.tolist()
+
+print("Matrix Transpose of matrix 1: ")
+print(matrix_1_t)
+
 for i in range(R):
     for j in range(R):
-        for k in range(R) :
-            resultant[i][j] += matrix_1[i][k] * matrix_2[k][j] 
-            
-print(resultant)
+        matrix_1[i][j] = matrix_1_t[i][i]*matrix_2[i][j]
+        print (matrix_1[i][j])
+
+
+
