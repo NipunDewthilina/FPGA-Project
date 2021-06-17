@@ -28,7 +28,7 @@ loop1:	STAC j		;j<=AC; j = AC
 	JPNZ		    ;if Z =0, JUMP to loop4	
 LDAC j			    ;AC<=j;	AC = j = n^2
 loop2:	STAC k		    ;   k<=AC	k = AC = j = n^2
-	LDAC sqr_n_plus_n  		AC<= sqr_n_plus_n	AC = sqr_n_plus_n
+	LDAC sqr_n_plus_n  		;AC<= sqr_n_plus_n	;AC = sqr_n_plus_n
 	MOVAC		        ;R <= AC	;R = AC = sqr_n_plus_n
 	LDAC k		        ;AC<=k	    ;AC = k
 	INAC		        ;AC<=AC+1	;AC = AC+1 = k+1
