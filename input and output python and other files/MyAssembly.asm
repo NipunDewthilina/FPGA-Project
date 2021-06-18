@@ -25,8 +25,18 @@ MOVAC
 LDAC n
 ADD
 STAC four_n
-mainloop1:	LDAC M[i,k]		;AC<=M[i,k]	
+mainloop1:	LDIAC i
+	SHIFT
+	MOVAC
+	LDIAC k
+	ADD
+	LDAC M[i,k]		;AC<=M[i,k]	
 	MOVAC		;R<=AC	
+	LDIAC k
+	SHIFT
+	MOVAC
+	LDIAC j
+	ADD
 	LDAC M[k,j]	;AC<=M[k,j]	
 	MULT		;AC<=AC*R	
 	MOVACR4		;R4<=AC	
@@ -35,31 +45,36 @@ mainloop1:	LDAC M[i,k]		;AC<=M[i,k]
 	MOVR4AC		;AC<=R4	
 	ADD		    ;AC<=AC+R	
 	MOVACR1		;R1<=AC	
-	LDAC k		;AC<=k	
+	LDIAC k		;AC<=k	
 	INAC		;AC<=AC+1	
 	MOVAC		;R<=AC	
 	STAC k		;k<=AC	
-	LDAC four_n		;AC<=four_n	
+	LDIAC four_n		;AC<=four_n	
 	SUB		    ;AC<=AC-R; if AC-R = 0, Z = 1 ;else, Z = 0;	AC = AC-R;
 	JPNZ mainloop1	;if Z =0, JUMP to loop1	
 MOVR1AC			    ;AC<=R1	
+LDIAC i
+SHIFT
+MOVAC
+LDIAC j
+ADD
 STAC M[i,j]			;M[i,j]<=AC	
-LDAC three_n		;AC<= three_n	
+LDIAC three_n		;AC<= three_n	
 STAC k			        ;k<=AC	;k=three_n
-mainloop2:	LDAC j		;AC<=j	Ac = j = two_n
+mainloop2:	LDIAC j		;AC<=j	Ac = j = two_n
 	INAC		;AC<=AC+1	
 	STAC j		;j<=AC	
 	MOVAC		;R<=AC	
-	LDAC three_n		;AC<=three_n	
+	LDIAC three_n		;AC<=three_n	
 	SUB		    ;AC<=AC-R; if AC-R = 0, Z = 1 ;else, Z = 0;	AC = AC-R;	
 	JPNZ mainloop1		;if Z =0, JUMP to loop1	
-LDAC two_n			;AC<=two_n	
+LDIAC two_n			;AC<=two_n	
 STAC j			;j<=AC	;j=two_n
 mainloop3:	LDAC i		;AC<=i	
 	INAC		;AC<=AC+1	
 	STAC i		;i<=AC	
 	MOVAC		;R<=AC	
-	LDAC n		;AC<=n	
+	LDIAC n		;AC<=n	
 	SUB		    ;AC<=AC-R; if AC-R = 0, Z = 1 ;else, Z = 0;	AC = AC-R;
 	JPNZ mainloop2		;if Z =0, JUMP to loop2	
 ENDOP				
