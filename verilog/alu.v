@@ -15,6 +15,7 @@ module alu
             2'd0 : alu_out <= in1 + in2;
             2'd1 : alu_out <= in1 - in2;
             2'd2 : alu_out <= in1 * in2;
+            2'd3 : alu_out <= in1 << in2;
         endcase
 
         if (alu_out == 0)
