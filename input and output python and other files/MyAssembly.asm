@@ -11,7 +11,7 @@ MOVACR1			;R1<=AC ;	R1 = 0;
 STAC i			;i<=AC;	i = 0
 LDIAC n			;AC<=n;	AC = n
 MOVAC			;R<=AC;	R = AC = n
-ADD			;AC<=AC+R;	AC = AC*R = n^2
+ADD			;AC<=AC+R;	AC = AC+R = 2n
 STAC two_n		;two_n<= AC;	two_n = AC
 STAC j
 MOVAC			;R <= AC;	R = AC = two_n
