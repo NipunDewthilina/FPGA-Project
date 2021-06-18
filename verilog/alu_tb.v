@@ -11,7 +11,7 @@
 //     endfunction
 // endclass
 
-module alu_tb ();
+module alu_tb;
 
     timeunit 1ns;
     timeprecision 1ps;
@@ -23,15 +23,20 @@ module alu_tb ();
 
     localparam N = 8;
     reg [1:0] alu_op;
-    reg signed [WIDTH-1:0] in1, in2, alu_out;
-    wire z;
+    reg signed [N-1:0] in1, in2;
+    wire [N-1:0] alu_out, z;
+    //wire z;
 
-    alu #(.N(N)) dut (.*);
+    alu #(.N(N)) dut (.clk(clk), .in1(in1), .in2(in2), .alu_op(alu_op), .alu_out(alu_out), .z(z));
 
     // Random_Num #(.WIDTH(WIDTH)) A_r, B_r;
     // Random_Sel sel_r;
 
     initial begin
+      
+      	$dumpfile("dump.vcd");
+    	$dumpvars(1);
+    
         in1 <= 8'd5;
         in2 <= 8'd10;
         alu_op <= 2'd0;
@@ -40,15 +45,19 @@ module alu_tb ();
         in1 <= 8'd30;
         in2 <= 8'd10;
         alu_op <= 2'd0;
-
+	
         @(posedge clk);
         in1 <= 8'd5;
         in2 <= 8'd10;
         alu_op <= 2'd1;
-
+		
+      #(CLK_PERIOD * 3);
         @(posedge clk);
-        in1 <= 8'd51;
-        B <= 8'd17;
-        sel <= 2'd2;
+        in1 <= 8'd4;
+        in2 <= 8'd20;
+        alu_op <= 2'd2;
+
+        //$stop;
     end
+  
 endmodule
