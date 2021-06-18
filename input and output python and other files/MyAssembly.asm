@@ -9,40 +9,38 @@ START			;PC<=0, AR<=0
 CLAC			;AC<=0, Z<=1	
 MOVACR1			;R1<=AC ;	R1 = 0;
 STAC i			;i<=AC;	i = 0
-LDAC n			;AC<=n;	AC = n
+LDIAC n			;AC<=n;	AC = n
 MOVAC			;R<=AC;	R = AC = n
 ADD			;AC<=AC+R;	AC = AC*R = n^2
 STAC two_n		;two_n<= AC;	two_n = AC
 STAC j
-LDAC two_n		;AC<= two_n	;AC = two_n
 MOVAC			;R <= AC;	R = AC = two_n
-LDAC n			;AC <= n;	AC = n
+LDIAC n			;AC <= n;	AC = n
 ADD			    ;AC <= AC+R;	AC = AC+R = two_n+n
 STAC three_n			;three_n <=AC;	three_n  = AC = two_n + n = nx2 + n
 STAC k
-LDAC three_n
 MOVAC
-LDAC n
+LDIAC n
 ADD
 STAC four_n
-mainloop1:	LDIAC i
-	SHIFT
-	MOVAC
-	LDIAC k
-	ADD
+mainloop1:	LDIAC i ;AC<=i
+	SHIFT			;AC<=AC<< width_of_i
+	MOVAC			;R<=AC
+	LDIAC k			;AC<=k
+	ADD				;AC<=AC+R
 	LDAC M[i,k]		;AC<=M[i,k]	
-	MOVAC		;R<=AC	
-	LDIAC k
-	SHIFT
-	MOVAC
-	LDIAC j
-	ADD
-	LDAC M[k,j]	;AC<=M[k,j]	
+	MOVACR2			;R2<=AC	
+	LDIAC k			;AC<=k		
+	SHIFT			;AC<=AC<<width_of_i
+	MOVAC			;R<=AC
+	LDIAC j			;AC<=j
+	ADD				;AC<=AC+R
+	LDAC M[k,j]	;AC<=M[k,j]
+	MVAC		;R<=AC
+	MVR2AC      ;AC<=R2
 	MULT		;AC<=AC*R	
-	MOVACR4		;R4<=AC	
-	MOVR1AC		;AC<=R1	
 	MOVAC		;R<=AC	
-	MOVR4AC		;AC<=R4	
+	MOVR1AC		;AC<=R1	
 	ADD		    ;AC<=AC+R	
 	MOVACR1		;R1<=AC	
 	LDIAC k		;AC<=k	
