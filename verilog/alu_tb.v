@@ -21,13 +21,14 @@ module alu_tb;
         forever #(CLK_PERIOD / 2) clk = ~clk;
     end
 
-    localparam N = 8;
+    localparam N = 16;
+    localparam width_of_index = 8;
     reg [1:0] alu_op;
     reg signed [N-1:0] in1, in2;
     wire [N-1:0] alu_out, z;
     //wire z;
 
-    alu #(.N(N)) dut (.clk(clk), .in1(in1), .in2(in2), .alu_op(alu_op), .alu_out(alu_out), .z(z));
+    alu #(.N(N),.width_of_index(width_of_index)) dut (.clk(clk), .in1(in1), .in2(in2), .alu_op(alu_op), .alu_out(alu_out), .z(z));
 
     // Random_Num #(.WIDTH(WIDTH)) A_r, B_r;
     // Random_Sel sel_r;

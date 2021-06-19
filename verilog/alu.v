@@ -1,6 +1,7 @@
 module alu 
 #(
-    parameter N
+    parameter N,
+    parameter width_of_index
 ) (
     input clk,
     input [N-1:0] in1,
@@ -15,7 +16,7 @@ module alu
             2'd0 : alu_out <= in1 + in2;
             2'd1 : alu_out <= in1 - in2;
             2'd2 : alu_out <= in1 * in2;
-            2'd3 : alu_out <= in1 << in2;
+            2'd3 : alu_out <= in1 << width_of_index;
         endcase
 
         if (alu_out == 0)
