@@ -312,4 +312,5 @@ module control (
                 next <= fetch1;
             end
     end 
+endmodule
 
