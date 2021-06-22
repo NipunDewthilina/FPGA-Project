@@ -6,6 +6,7 @@ module regr #(
     input clk,
     input write_en,
     input [N-1:0] datain,
+    input [4:0] read_en,
     output reg [N-1:0] dataout
 );
 

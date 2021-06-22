@@ -21,6 +21,8 @@ always @(posedge clk) begin
         dataout <= datain;
     if (read_en == 4'd13)
         r_out <= datain;
+    if (read_en == 4'd5)
+        dataout <= datain;
     if (alu_to_ac == 1)
         dataout <= alu_out;
 end
