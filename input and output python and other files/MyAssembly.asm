@@ -18,7 +18,7 @@ MOVACAR        	;AR<=AC
 MOVR4AC         ;AC<=R4
 STAC j			;M[0'd1]<=AC	;j = 2n
 MOVAC			;R<=AC;	R = AC = n
-ADD			;AC<=AC+R;	AC = AC+R = 2n
+ADD				;AC<=AC+R;	AC = AC+R = 2n
 MOVACR4         ;R4<=AC	
 0'd4			//to select the location of two_n ;AC<=0'd4
 MOVACAR        	;AR<=AC
