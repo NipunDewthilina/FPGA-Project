@@ -58,7 +58,20 @@ module control (
             end_process <= 1'd0;
     end
 
-// write_en, inc_en, - x, x, x(AC->R), x(ALU -> AC), DM, IM, R1, R2, R3, R4, R, AC, IR, AR, PC, x 
+// write_en, inc_en, - x, x, (AC->R), (ALU -> AC), DM, IM, R1, R2, R3, R4, R, AC, IR, AR, PC, x 
+// 0001 PC
+// 0010 DAR
+// 0011 DR
+// 0100 IR
+// 0101 AC
+// 0110 R
+// 0111 R1
+// 1000 R2
+// 1001 R3
+// 1010 R4
+// 1011 R5
+// 1100 DM
+// 1101 IM
     always @(present or z or instruction) begin
         case (present)
             start: begin
