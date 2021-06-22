@@ -5,7 +5,7 @@ module ac #(
     input [3:0]read_en,
     input [N-1:0] datain,//from the bus
     input [N-1:0] alu_out,//alu_out
-    // input alu_to_ac,
+    input alu_to_ac,
     input inc_en,
     input clr_en,
     output [N-1:0] r_out, //r_out
