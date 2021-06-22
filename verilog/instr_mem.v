@@ -7,27 +7,27 @@ output reg[width_out-1:0] instr_out
 
     reg [width_out-1:0] ram [2047:0];
 
-    parameter ldac = 5'd12;
-    parameter nop = 5'd1;
-    parameter mvacar = 5'd2;
-    parameter mvac = 5'd3;
-    parameter mvacr1 = 5'd4;
-    parameter mvacr2 = 5'd5;
-    parameter mvacr3 = 5'd6;
-    parameter mvacr4 = 5'd7;
-    parameter mvr1ac = 5'd8;
-    parameter mvr2ac = 5'd9;
-    parameter mvr3ac = 5'd10;
-    parameter mvr4ac = 5'd11;
-    parameter ldiac = 5'd13;
-    parameter stac = 5'd14;
-    parameter add = 5'd15;
-    parameter mult = 5'd16;
-    parameter lshift = 5'd17;
-    parameter sub = 5'd18;
-    parameter inac = 5'd19;
-    parameter jpnz = 5'd20;
-    parameter jmpz = 5'd21;
+    parameter ldac = 5'd3;
+    parameter nop = 5'd28;
+    parameter mvacar = 5'd10;
+    parameter mvac = 5'd9;
+    parameter mvacr1 = 5'd11;
+    parameter mvacr2 = 5'd12;
+    parameter mvacr3 = 5'd13;
+    parameter mvacr4 = 5'd14;
+    parameter mvr1ac = 5'd15;
+    parameter mvr2ac = 5'd16;
+    parameter mvr3ac = 5'd17;
+    parameter mvr4ac = 5'd18;
+    parameter ldiac = 5'd5;
+    parameter stac = 5'd8;
+    parameter add = 5'd19;
+    parameter mult = 5'd20;
+    parameter lshift = 5'd21;
+    parameter sub = 5'd22;
+    parameter inac = 5'd23;
+    parameter jpnz = 5'd24;
+    parameter jmpz = 5'd26;
 
     parameter addr_i = 12'd0;
     parameter addr_j = 12'd1;
