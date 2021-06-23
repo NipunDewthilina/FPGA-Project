@@ -1,7 +1,7 @@
 module instr_mem #(parameter width_in,parameter width_out)(input clk,
-input read_en,
+// input read_en,
 input [width_in-1:0] addr,
-input [width_in-1:0] instr_in,
+// input [width_in-1:0] instr_in,
 output reg[width_out-1:0] instr_out
 );
 
@@ -30,17 +30,17 @@ output reg[width_out-1:0] instr_out
     parameter jmpz = 5'd26;
     parameter endop = 5'd31;
 
-    parameter addr_i = 12'd0;
-    parameter addr_j = 12'd1;
-    parameter addr_k = 12'd2;
+    parameter addr_i = 12'd4095;
+    parameter addr_j = 12'd4094;
+    parameter addr_k = 12'd4093;
 
-    parameter addr_n = 12'd3;
-    parameter addr_2n = 12'd4;
-    parameter addr_3n = 12'd5;
+    parameter addr_n = 12'd4092;
+    parameter addr_2n = 12'd4091;
+    parameter addr_3n = 12'd4090;
 
     parameter addr_l1 = 12'd0;
-    parameter addr_l2 = ;
-    parameter addr_l3 = ;
+    parameter addr_l2 = 12'd40;
+    parameter addr_l3 = 12'd49;
 
     parameter stac_i = {stac, addr_i};
     parameter stac_j = {stac, addr_j};
@@ -119,7 +119,7 @@ output reg[width_out-1:0] instr_out
     end
 
     always @(posedge clk) begin
-        if (read_en == 1)
+        // if (read_en == 1)
             instr_out <= ram[addr];
     end
 

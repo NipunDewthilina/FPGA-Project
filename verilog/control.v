@@ -8,7 +8,7 @@ module control (
     output reg [15:0] inc_en,
     output reg [15:0] clr_en,
     output reg [15:0] read_en,
-    output reg end_process,
+    output reg end_process
 );
 
     reg [5:0] present = 5'd0;

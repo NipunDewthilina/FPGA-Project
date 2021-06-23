@@ -1,13 +1,12 @@
 module processor ( input clk,
-input [7:0] dm_out,
+input [11:0] dm_out,
 input [16:0] im_out,
-input [1:0] status,
+// input [1:0] status,
 
-// output reg dm_en,
-// output reg im_en,
+output reg dm_en,
 output [11:0] pc_out,//
 output [11:0] ar_out,
-output [16:0]bus_out,
+output [16:0] bus_out,
 output end_process);
 
  wire [2:0] alu_op;
@@ -120,5 +119,8 @@ read_en(read_en),.inc_en(inc_en),.clr_en(clr_en),.status(status),
 .end_process (end_process ));
 
 status = 2'd1;
+always @(posedge clk) begin
+    dm_en <= write_en[11];
+end
 
  endmodule
