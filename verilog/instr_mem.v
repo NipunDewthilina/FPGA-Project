@@ -28,6 +28,7 @@ output reg[width_out-1:0] instr_out
     parameter inac = 5'd23;
     parameter jpnz = 5'd24;
     parameter jmpz = 5'd26;
+    parameter endop = 5'd31;
 
     parameter addr_i = 12'd0;
     parameter addr_j = 12'd1;
@@ -114,6 +115,7 @@ output reg[width_out-1:0] instr_out
         ram[54] = sub;
         ram[55] = jpnz_l2;
         ram[56] = nop;
+        ram[57] = endop;
     end
 
     always @(posedge clk) begin

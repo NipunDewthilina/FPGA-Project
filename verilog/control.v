@@ -2,6 +2,7 @@ module control (
     input clk;
     input [15:0] z,
     input [15:0] instruction,
+    input [1:0] status,
     output reg [2:0] alu_op,
     output reg [15:0] write_en,
     output reg [15:0] inc_en,
@@ -59,20 +60,21 @@ module control (
     end
 
 // write_en, inc_en, - x, x, (AC->R), (ALU -> AC), DM, IM, R1, R2, R3, R4, R, AC, IR, AR, PC, x 
-// 0001 PC
-// 0010 DAR
-// 0011 DR
-// 0100 IR
-// 0101 AC
-// 0110 R
-// 0111 R1
+// 0001 PC 1
+// 0010 DAR 2
+// 0011 DR 3
+// 0100 IR 4
+// 0101 AC 5
+// 0110 R 6
+// 0111 R1 
 // 1000 R2
 // 1001 R3
 // 1010 R4
 // 1011 R5
-// 1100 DM
-// 1101 IM
-    always @(present or z or instruction) begin
+// 1100 DM 12
+// 1101 IM 13
+// 1110 Read from AC by R
+    always @(present or z or instruction or status) begin
         case (present)
             start: begin
                 read_en <= 4'd0;
@@ -89,7 +91,7 @@ module control (
                 inc_en <= 16'b0000000000000000;
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <= fetch2;
             end
 
             fetch2: begin 
@@ -147,7 +149,7 @@ module control (
             end
 
             mvac1: begin
-                read_en <= 4'd13; //ac
+                read_en <= 4'd14; //ac
                 write_en <= 16'b0000000000100000; //r
                 inc_en <= 16'b0000000000000000;
                 clr_en <= 16'b0000000000000000;
@@ -238,7 +240,7 @@ module control (
 
             add1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b00010000000000000;  //alu_to_ac changed 22/06/2021
+                write_en <= 16'b0001000000000000;  //alu_to_ac changed 22/06/2021
                 inc_en <= 16'b0000000000000000;
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd1; //add
@@ -247,7 +249,7 @@ module control (
 
             sub1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b00010000000000000;  //alu_to_ac
+                write_en <= 16'b0001000000000000;  //alu_to_ac
                 inc_en <= 16'b0000000000000000;
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd2; //sub
@@ -256,7 +258,7 @@ module control (
 
             mult1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b00010000000000000;  //alu_to_ac
+                write_en <= 16'b0001000000000000;  //alu_to_ac
                 inc_en <= 16'b0000000000000000;
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd3; //mult

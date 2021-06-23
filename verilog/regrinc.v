@@ -13,7 +13,7 @@ module name #(
 
     always @(posedge clk) begin
         if (write_en == 1)
-            dataout <= datain;
+            dataout <= datain[11:0];
         if (inc_en == 1) 
             dataout <= dataout + (N)'d1;
     end

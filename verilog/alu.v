@@ -6,7 +6,7 @@ module alu
     input clk,
     input signed reg [N-1:0] in1,
     input signed reg [N-1:0] in2,
-    input [1:0] alu_op,
+    input [2:0] alu_op,
     output reg [N-1:0] alu_out,
     output reg [N-1:0] z
 );

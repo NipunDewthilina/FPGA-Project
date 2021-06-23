@@ -2,7 +2,7 @@ module ac #(
     parameter N
 ) (
     input write_en,
-    input [3:0]read_en,
+    // input [3:0]read_en,
     input [N-1:0] datain,//from the bus
     input [N-1:0] alu_out,//alu_out
     input alu_to_ac,
@@ -21,8 +21,8 @@ always @(posedge clk) begin
         dataout <= datain;
     if (read_en == 4'd13)//ac read for r
         r_out <= datain;
-    if (read_en == 4'd5)//ac read for other registers 
-        dataout <= datain;
+    // if (read_en == 4'd5)//ac read for other registers 
+    //     dataout <= datain;
     if (alu_to_ac == 1)
         dataout <= alu_out;
 end

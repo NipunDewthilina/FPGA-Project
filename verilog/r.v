@@ -11,7 +11,7 @@ module regr #(
 
     always @(posedge clk) begin
         if (write_en == 1 )//have to check read_en according to the register type
-            dataout <= datain[11:0];
+            dataout <= datain;
     end     
     
 endmodule
