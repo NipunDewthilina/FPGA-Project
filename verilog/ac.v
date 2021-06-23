@@ -19,7 +19,7 @@ always @(posedge clk) begin
     if (clr_en == 1)
         dataout <= 12'd0;
     if (write_en == 1)//ac write from bus
-        dataout <= datain;
+        dataout <= datain ;
     if (read_en == 4'd13)//ac read for r
         r_out <= datain;
     // if (read_en == 4'd5)//ac read for other registers 

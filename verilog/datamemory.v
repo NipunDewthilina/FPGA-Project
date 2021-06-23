@@ -38,9 +38,9 @@ module datamemory #(
         r3 <= ram[66];
         r4 <= ram[67];
         if (write_en == 1)
-            ram[addr] <= datain[(N/2)-1:0];
+            ram[addr] <= datain[N-1:0];
         else begin
-            dataout <= ram[addr];
+            dataout <= ram[addr]+17'd0;
         end
     end
     
