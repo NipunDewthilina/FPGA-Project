@@ -1,4 +1,4 @@
-module bus #(parameter N)( input clock,
+module bus #(parameter N)( input clk,
 input [3:0] read_en,
 input [11:0] r1,
 input [11:0] r2,
@@ -9,7 +9,7 @@ input [11:0] ac,
 input [11:0] dm,
 input [16:0] im,
 output reg [N-1:0] busout ) ;
-always @(r1 or r2 or r3 or r4 or r or ir or ac or im or read_en or dm)
+always @(r1 or r2 or r3 or r4 or ir or ac or im or read_en or dm)
 
    begin
    case(read_en)

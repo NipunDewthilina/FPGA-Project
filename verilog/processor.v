@@ -43,7 +43,7 @@ module processor ( input clk,
 	 parameter width_of_i = 6;
 
 	//register R
-	 r #(.N(N_reg)) reg_r (.clk(clk), .write_en (write_en 
+	 rr #(.N(N_reg)) reg_r (.clk(clk), .write_en (write_en 
 	[13]),.datain(ac_out),.dataout(regr_out ));
 
 	//register R1
@@ -54,29 +54,28 @@ module processor ( input clk,
 	//register R2
 	 regr #(.N(N_bus)) regr_r2(.clk(clk), .write_en (write_en 
 	[8]),.datain(bus_out),.dataout(regr2_out
-	),.inc_en(inc_en[5]));
+	));
 
 	//register R3
 	 regr #(.N(N_bus)) regr_r3(.clk(clk), .write_en (write_en 
 	[7]),.datain(bus_out),.dataout(regr3_out
-	),.inc_en(inc_en[6]));
+	));
 
 	//register R4
 	 regr #(.N(N_bus)) regr_r4(.clk(clk), .write_en (write_en 
 	[6]),.datain(bus_out),.dataout(regr4_out ));
 
 	//register AR
-	 ar #(.N(N_bus)) ar(.clk(clk), .write_en (write_en 
-	[2]),.datain(bus_out),.clr_en(clr_en),.dataout(ar_out),.
-	inc_en(inc_en[2]));
+	 reg_ar #(.N(N_bus)) ar(.clk(clk), .write_en (write_en 
+	[2]),.datain(bus_out),.clr_en(clr_en),.dataout(ar_out));
 
 	//register PC
 	 pc #(.N(N_bus)) pc(.clk(clk), .write_en (write_en 
 	[1]),.clr_en(clr_en[1]),.datain(bus_out),.dataout(pc_out));//
 
 	//register bus
-	 bus #(.N(N_bus)) bus1(.r1(regr1_out ),.r2(regr2_out ),.r3(regr3_out ),.r4(regr4_out )
-	 ,.r(regr_out ),.dar(dar_out),.ir(ir_out),.pc(pc_out),.ac(ac_out),.dm(dm_out),.im(im_out),.busout(bus_out),.read_en(read_en)
+	 bus #(.N(N_bus)) bus1 (.r1(regr1_out ),.r2(regr2_out ),.r3(regr3_out ),.r4(regr4_out )
+	 ,.ir(ir_out),.ac(ac_out),.dm(dm_out),.im(im_out),.busout(bus_out),.read_en(read_en)
 	,.clk(clk));
 
 	//register Accumilator

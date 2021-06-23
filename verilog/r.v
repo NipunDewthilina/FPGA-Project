@@ -1,6 +1,6 @@
 //registers without increment
 
-module r #(
+module rr #(
     parameter N
 ) (
     input clk,
