@@ -1,7 +1,6 @@
 module datamemory #(
     parameter N
 ) (
-	input clk,
     input write_en,
     input [N-1:0] addr, //[N-1:0]
     input [N-1:0] datain,
@@ -44,4 +43,4 @@ module datamemory #(
         end
     end
     
-endmodule
+endmodule)

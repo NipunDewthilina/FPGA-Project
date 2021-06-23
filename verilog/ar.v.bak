@@ -1,6 +1,6 @@
 //registers without increment
 
-module ar #(
+module regr #(
     parameter N
 ) (
     input clk,
@@ -15,7 +15,7 @@ module ar #(
         if (write_en == 1)//have to check read_en according to the register type
             dataout <= datain[11:0];
         if (clr_en == 1)
-            dataout <= 12'd0;
+            dataout <= (N)'d0;
     end     
     
 endmodule

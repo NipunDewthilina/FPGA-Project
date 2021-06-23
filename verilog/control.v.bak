@@ -1,5 +1,5 @@
 module control (
-    input clk,
+    input clk;
     input [15:0] z,
     input [15:0] instruction,
     input [1:0] status,
@@ -15,7 +15,7 @@ module control (
     reg [5:0] next = 5'd0;
 
     parameter 
-    start1 = 5'd0,
+    start1 = 5'd0;
     fetch1 = 5'd1,
     fetch2 = 5'd2,
     ldac1 = 5'd3,
@@ -36,15 +36,17 @@ module control (
     mvr4ac = 5'd18,
     add1 = 5'd19,
     mult1 = 5'd20,
-    lshift1 = 5'd21,
+    lshift = 5'd21,
     sub1 = 5'd22,
     inac1 = 5'd23,
     jpnz1 = 5'd24,
     jpnz2 = 5'd25,
     jmpz1 = 5'd26,//notused
     jmpz2 = 5'd27,//notused
+
     nop1 = 5'd28,
-    clac1 = 5'd30,
+    start1 = 5'd29,
+    clac1 = 5'd30;
     endop = 5'd31;
 
     always @(posedge clk)
@@ -74,7 +76,7 @@ module control (
 // 1110 Read from AC by R
     always @(present or z or instruction or status) begin
         case (present)
-            start1: begin
+            start: begin
                 read_en <= 4'd0;
                 write_en <= 16'b0000000000000000;
                 inc_en <= 16'b0000000000000000;
@@ -324,7 +326,6 @@ module control (
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
-    endcase 
-	 end //added end
+    end 
 endmodule
 

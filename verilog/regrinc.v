@@ -1,13 +1,13 @@
 //registers with increment
 
-module name #(
-    parameter N;
+module regrinc #(
+    parameter N
 ) (
     input clk,
     input write_en,
     input [N-1:0] datain,
     input inc_en,
-    output reg [N-1:0] dataout = (N)'d0,
+    output reg [N-1:0] dataout = 12'd0
     
 );
 
@@ -15,7 +15,7 @@ module name #(
         if (write_en == 1)
             dataout <= datain[11:0];
         if (inc_en == 1) 
-            dataout <= dataout + (N)'d1;
+            dataout <= dataout + 12'd1;
     end
     
 endmodule

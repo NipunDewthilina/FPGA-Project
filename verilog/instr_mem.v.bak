@@ -67,7 +67,7 @@ output reg[width_out-1:0] instr_out
         ram[6] = ldac;
         ram[7] = mvacr2;
         ram[8] = ldiac_k;
-        ram[9] = lshift;
+        ram[9] = shift;
         ram[10] = mvac;
         ram[11] = ldiac_j;
         ram[12] = add;
@@ -110,7 +110,7 @@ output reg[width_out-1:0] instr_out
         ram[49] = ldiac_i; //loop3
         ram[50] = inac;
         ram[51] = stac_i;
-        ram[52] = mvac;
+        ram[52] = mvrac;
         ram[53] = ldiac_n;
         ram[54] = sub;
         ram[55] = jpnz_l2;

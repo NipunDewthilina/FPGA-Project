@@ -4,8 +4,8 @@ module alu
     parameter width_of_i
 ) (
     input clk,
-    input [N-1:0] in1,
-    input [N-1:0] in2,
+    input signed reg [N-1:0] in1,
+    input signed reg [N-1:0] in2,
     input [2:0] alu_op,
     output reg [N-1:0] alu_out,
     output reg [N-1:0] z

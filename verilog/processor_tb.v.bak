@@ -1,9 +1,7 @@
-`timescale 1ps/1ps
-module processor_tb;
-
-    //timeunit 1ns;
-    //timeprecision 1ps;
-    reg clk = 0;
+module processor_tb();
+    timeunit 1ns;
+    timeprecision 1ps;
+    logic clk = 0;
     localparam CLK_PERIOD = 10;
     initial begin
         forever #(CLK_PERIOD / 2) clk = ~clk;
@@ -28,22 +26,19 @@ module processor_tb;
 
     datamemory #(.N(12)) dm
     (
-	 .clk(clk),.write_en(dm_en),.addr(ar_out),.datain(bus_out),
+    .write_en(dm_en),.addr(ar_out),.datain(bus_out),
     .dataout(dm_out),.r1(r1),.r2(r2),.r3(r3),.r4(r4));
 
     instr_mem #(.width_in(12),.width_out(17)) im
     (
-        .clk(clk),.addr(pc_out),.instr_out(im_out)
+        .addr(pc_out),.instr_out(im_out)
     );
-	 
-initial begin
-if (end_process ==1)
+
     $display(r1);
     $display(r2);
     $display(r3);
     $display(r4);
-    end
-	 
+    
 endmodule
 
 
