@@ -1,19 +1,20 @@
+//Remember : all the inputs from bus are 17 bits, outputs to the bus is 12 bits.
 module datamemory #(
     parameter N
 ) (
 	input clk,
     input write_en,
-    input [N-1:0] addr, //[N-1:0]
+    input [11:0] addr, //[N-1:0]
     input [N-1:0] datain,
-    output reg [(N-1):0] dataout, //[N-1:0]
-    output reg [(N-1):0] r1,
-    output reg [(N-1):0] r2,
-    output reg [(N-1):0] r3,
-    output reg [(N-1):0] r4
+    output reg [11:0] dataout, //[N-1:0]
+    output reg [11:0] r1,
+    output reg [11:0] r2,
+    output reg [11:0] r3,
+    output reg [11:0] r4
 );
     
-    reg [N-1:0] ram [65535:0] ; //[N-1:0] [65535:0]
-    parameter start_bit = 4095;
+    reg [11:0] ram [4095:0] ; //[N-1:0] [4095:0]
+    parameter start_bit = 4094;
     initial begin
         
         ram[start_bit] = 12'd0;//i
@@ -38,9 +39,9 @@ module datamemory #(
         r3 <= ram[66];
         r4 <= ram[67];
         if (write_en == 1)
-            ram[addr] <= datain[N-1:0];
+            ram[addr] <= datain[11:0];
         else begin
-            dataout <= ram[addr]+17'd0;
+            dataout <= ram[addr];
         end
     end
     

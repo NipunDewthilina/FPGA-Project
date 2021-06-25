@@ -43,7 +43,7 @@ module processor ( input clk,
 	 parameter width_of_i = 6;
 
 	//register R
-	 rr #(.N(N_reg)) reg_r (.clk(clk), .write_en (write_en 
+	 rr #(.reg_size(N_reg)) reg_r (.clk(clk), .write_en (write_en 
 	[13]),.datain(ac_out),.dataout(regr_out ));
 
 	//register R1
@@ -67,12 +67,20 @@ module processor ( input clk,
 
 	//register AR
 	 reg_ar #(.N(N_bus)) ar(.clk(clk), .write_en (write_en 
-	[2]),.datain(bus_out),.clr_en(clr_en),.dataout(ar_out));
+	[2]),.datain(bus_out),.clr_en(clr_en[2]),.dataout(ar_out));
 
 	//register PC
 	 pc #(.N(N_bus)) pc(.clk(clk), .write_en (write_en 
-	[1]),.clr_en(clr_en[1]),.datain(bus_out),.dataout(pc_out));//
-
+	[1]),.clr_en(clr_en[1]),.inc_en(inc_en[1]),.datain(bus_out),.dataout(pc_out));//
+// (
+//     input clk,
+//     input write_en,
+//     input [N-1:0] datain,
+//     input inc_en,
+//     input clr_en,
+//     output reg [11:0] dataout = 12'd0
+    
+// );
 	//register bus
 	 bus #(.N(N_bus)) bus1 (.r1(regr1_out ),.r2(regr2_out ),.r3(regr3_out ),.r4(regr4_out )
 	 ,.ir(ir_out),.ac(ac_out),.dm(dm_out),.im(im_out),.busout(bus_out),.read_en(read_en)
@@ -80,7 +88,7 @@ module processor ( input clk,
 
 	//register Accumilator
 	 ac #(.N(N_bus)) ac1(.clk(clk), .write_en (write_en 
-	[4]),.datain(bus_out),.dataout(ac_out),.alu_out(
+	[4]),.datain(bus_out),.read_en(read_en),.dataout(ac_out),.alu_out(
 	alu_out),.alu_to_ac (write_en [12]),.inc_en(inc_en[4]),
 	.clr_en(clr_en[4]),.r_out(r_out));
 	// (
@@ -99,7 +107,8 @@ module processor ( input clk,
 	// inc_en(inc_en[1]));
 
 	//register alu
-	 alu #(.N(N_reg),.width_of_i(width_of_i)) alu1 (.clk(clk),.in1(regr_out ),.in2(ac_out),.alu_op(alu_op),.alu_out(alu_out),.z(z));
+	 alu #(.N(N_reg),.width_of_i(width_of_i)) alu1 (.clk(clk),.in1(regr_out ),.in2(ac_out),
+	 .alu_op(alu_op),.alu_out(alu_out),.z(z));
 	// (
 	//     input clk,
 	//     input signed reg [N-1:0] in1,
@@ -112,8 +121,9 @@ module processor ( input clk,
 	// control unit
 	 control control1 (.clk(clk),.z(z),.instruction 
 	(ir_out),.alu_op(alu_op),.write_en (write_en ),.
-	read_en(read_en),.inc_en(inc_en),.clr_en(clr_en),.status(status),
-	.end_process (end_process ));
+	read_en(read_en),.inc_en(inc_en),.clr_en(clr_en),
+	// .status(status)
+	,.end_process (end_process ));
 
 	//status = 2'd1;
 	always @(posedge clk) begin

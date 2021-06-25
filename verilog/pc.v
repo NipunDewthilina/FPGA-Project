@@ -5,10 +5,10 @@ module pc #(
 ) (
     input clk,
     input write_en,
-    input [11:0] datain,
+    input [N-1:0] datain,
     input inc_en,
     input clr_en,
-    output reg [N-1:0] dataout = 12'd0
+    output reg [11:0] dataout = 12'd0
     
 );
 

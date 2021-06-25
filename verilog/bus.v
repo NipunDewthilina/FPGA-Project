@@ -20,7 +20,7 @@ always @(r1 or r2 or r3 or r4 or ir or ac or im or read_en or dm)
    4'd9: busout <= r3+17'd0;
    4'd10: busout <= r4+17'd0;
    4'd12: busout <= dm + 17'd0;
-   4'd13: busout <= im+ 17'd0;
+   4'd13: busout <= im;
    default: busout <= 17'd0;
    endcase
    end

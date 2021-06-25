@@ -1,14 +1,13 @@
 //registers without increment
 
 module reg_ar #(
-    parameter N
-) (
+    parameter N) (
     input clk,
     input write_en,
     input clr_en,
     input [N-1:0] datain,
     // input [4:0] read_en,
-    output reg [N-1:0] dataout
+    output reg [11:0] dataout
 );
 
     always @(posedge clk) begin
