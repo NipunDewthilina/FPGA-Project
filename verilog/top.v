@@ -1,21 +1,29 @@
 module top
 (
     input clk,
-    output reg r1,
-    output reg r2,
-    output reg r3,
-    output reg r4,
-    output reg end_process
+    output wire [11:0] r1,
+    output wire [11:0] r2,
+    output wire [11:0] r3,
+    output wire [11:0] r4,
+    output wire end_process
 );
-    reg signed  [11:0] dm_out;
-    reg signed [16:0] im_out;
+    wire  [11:0] dm_out;
+    wire [16:0] im_out;
 
-    reg [1:0] status;
+    // reg [1:0] status;
     wire [11:0] pc_out;
     wire [11:0] ar_out;
     wire [16:0] bus_out;
-    wire end_process;
     wire dm_en;
+
+// ( input clk,
+// 	input [11:0] dm_out,
+// 	input [16:0] im_out,
+// 	output reg dm_en,
+// 	output [11:0] pc_out,//
+// 	output [11:0] ar_out,
+// 	output [16:0] bus_out,
+// 	output end_process);
 
     processor core1 (
     .clk(clk),.dm_out(dm_out),.im_out(im_out),

@@ -1,3 +1,4 @@
+//Remember : all the inputs from bus are 17 bits, outputs to the bus is 12 bits.
 module datamemory #(
     parameter N
 ) (
@@ -5,7 +6,7 @@ module datamemory #(
     input write_en,
     input [N-1:0] addr, //[N-1:0]
     input [N-1:0] datain,
-    output reg [(N-1):0] dataout, //[N-1:0]
+    output reg [11:0] dataout, //[N-1:0]
     output reg [11:0] r1,
     output reg [11:0] r2,
     output reg [11:0] r3,
@@ -33,10 +34,10 @@ module datamemory #(
         ram[323]=12'd8;
     end
     always @(posedge clk) begin
-        r1 <= ram[2]+17'd0;
-        r2 <= ram[3]+17'd0;
-        r3 <= ram[66]+17'd0;
-        r4 <= ram[67]+17'd0;
+        r1 <= ram[2];
+        r2 <= ram[3];
+        r3 <= ram[66];
+        r4 <= ram[67];
         if (write_en == 1)
             ram[addr] <= datain[11:0];
         else begin

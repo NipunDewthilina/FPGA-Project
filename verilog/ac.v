@@ -10,7 +10,7 @@ module ac #(
     input inc_en,
     input clr_en,
     output reg [11:0] r_out, //r_out
-    output reg [N-1:0] dataout //to the bus
+    output reg [11:0] dataout //to the bus
 );
 
 always @(posedge clk) begin
@@ -19,7 +19,7 @@ always @(posedge clk) begin
     if (clr_en == 1)
         dataout <= 12'd0;
     if (write_en == 1)//ac write from bus
-        dataout <= datain[11:0] + 17'd0;
+        dataout <= datain[11:0];
     if (read_en == 4'd13)//ac read for r
         r_out <= datain[11:0];
     // if (read_en == 4'd5)//ac read for other registers 

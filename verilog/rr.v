@@ -1,12 +1,11 @@
 //registers without increment
 
 module rr #(
-    parameter N
-) (
+    parameter reg_size) (
     input clk,
     input write_en,
-    input [N-1:0] datain,
-    output reg [N-1:0] dataout
+    input [reg_size-1:0] datain,
+    output reg [reg_size-1:0] dataout
 );
 
     always @(posedge clk) begin

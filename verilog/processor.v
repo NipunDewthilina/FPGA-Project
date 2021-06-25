@@ -43,7 +43,7 @@ module processor ( input clk,
 	 parameter width_of_i = 6;
 
 	//register R
-	 rr #(.N(N_reg)) reg_r (.clk(clk), .write_en (write_en 
+	 rr #(.reg_size(N_reg)) reg_r (.clk(clk), .write_en (write_en 
 	[13]),.datain(ac_out),.dataout(regr_out ));
 
 	//register R1
@@ -67,12 +67,20 @@ module processor ( input clk,
 
 	//register AR
 	 reg_ar #(.N(N_bus)) ar(.clk(clk), .write_en (write_en 
-	[2]),.datain(bus_out),.clr_en(clr_en),.dataout(ar_out));
+	[2]),.datain(bus_out),.clr_en(clr_en[2]),.dataout(ar_out));
 
 	//register PC
 	 pc #(.N(N_bus)) pc(.clk(clk), .write_en (write_en 
 	[1]),.clr_en(clr_en[1]),.inc_en(inc_en[1]),.datain(bus_out),.dataout(pc_out));//
-
+// (
+//     input clk,
+//     input write_en,
+//     input [N-1:0] datain,
+//     input inc_en,
+//     input clr_en,
+//     output reg [11:0] dataout = 12'd0
+    
+// );
 	//register bus
 	 bus #(.N(N_bus)) bus1 (.r1(regr1_out ),.r2(regr2_out ),.r3(regr3_out ),.r4(regr4_out )
 	 ,.ir(ir_out),.ac(ac_out),.dm(dm_out),.im(im_out),.busout(bus_out),.read_en(read_en)
