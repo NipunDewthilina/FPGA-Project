@@ -5,12 +5,12 @@ module ac #(
     input write_en,
      input [3:0]read_en,
     input [N-1:0] datain,//from the bus
-    input [N-1:0] alu_out,//alu_out
+    input [11:0] alu_out,//alu_out
     input alu_to_ac,
     input inc_en,
     input clr_en,
-    output reg [N-1:0] r_out, //r_out
-    output reg [N-1:0] dataout = 12'd0//to the bus
+    output reg [11:0] r_out, //r_out
+    output reg [N-1:0] dataout //to the bus
 );
 
 always @(posedge clk) begin
@@ -19,9 +19,9 @@ always @(posedge clk) begin
     if (clr_en == 1)
         dataout <= 12'd0;
     if (write_en == 1)//ac write from bus
-        dataout <= datain;
+        dataout <= datain[11:0] + 17'd0;
     if (read_en == 4'd13)//ac read for r
-        r_out <= datain;
+        r_out <= datain[11:0];
     // if (read_en == 4'd5)//ac read for other registers 
     //     dataout <= datain;
     if (alu_to_ac == 1)

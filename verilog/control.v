@@ -1,18 +1,21 @@
 module control (
     input clk,
     input [15:0] z,
-    input [15:0] instruction,
-    input [1:0] status,
+    input [4:0] instruction,
+    // input [1:0] status,
     output reg [2:0] alu_op,
     output reg [15:0] write_en,
     output reg [15:0] inc_en,
     output reg [15:0] clr_en,
-    output reg [15:0] read_en,
+    output reg [3:0] read_en,
     output reg end_process
 );
 
     reg [5:0] present = 5'd0;
     reg [5:0] next = 5'd0;
+
+    reg [10:0] address = 11'd0;
+    instruction_ext = {address,instruction};
 
     parameter 
     start1 = 5'd0,
@@ -72,7 +75,7 @@ module control (
 // 1100 DM 12
 // 1101 IM 13
 // 1110 Read from AC by R
-    always @(present or z or instruction or status) begin
+    always @(present or z or instruction_ext) begin
         case (present)
             start1: begin
                 read_en <= 4'd0;
@@ -98,7 +101,7 @@ module control (
                 inc_en <= 16'b0000000000000010; //pc
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= instruction[5:0];
+                next <= instruction;
             end
 
             ldac1: begin

@@ -8,7 +8,7 @@ module alu
     input [N-1:0] in2,
     input [2:0] alu_op,
     output reg [N-1:0] alu_out,
-    output reg [N-1:0] z
+    output reg [15:0] z
 );
     
     always @(posedge clk) begin
@@ -21,8 +21,8 @@ module alu
         endcase
 
         if (alu_out == 0)
-            z <= 1;
+            z <= 16'd1;
         else 
-            z <= 0;
+            z <= 16'd0;
     end
 endmodule
