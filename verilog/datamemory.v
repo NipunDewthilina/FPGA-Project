@@ -24,14 +24,14 @@ module datamemory #(
         ram[start_bit-4] = 12'd4;//2n = 4
         ram[start_bit-5] = 12'd6;//3n = 6
         //2x2 matrix
-        ram[4] = 12'd1;
-        ram[5] = 12'd2;
-        ram[68]  =12'd3;
-        ram[69] = 12'd4;
-        ram[258]= 12'd5;
-        ram[259]=12'd6;
-        ram[322]=12'd7;
-        ram[323]=12'd8;
+        ram[4] = 12'd21;
+        ram[5] = 12'd22;
+        ram[68]  =12'd23;
+        ram[69] = 12'd24;
+        ram[258]= 12'd25;
+        ram[259]= 12'd26;
+        ram[322]= 12'd27;
+        ram[323]= 12'd28;
     end
 //     2]
 // 3]

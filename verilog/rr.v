@@ -9,7 +9,7 @@ module rr #(
 );
 
     always @(posedge clk) begin
-        if (write_en == 1 )//have to check read_en according to the register type
+        if (write_en ==  1 )//have to check read_en according to the register type
             dataout <= datain;
     end     
     

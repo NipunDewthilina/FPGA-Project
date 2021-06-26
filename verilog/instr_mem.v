@@ -136,8 +136,8 @@ output reg[width_out-1:0] instr_out
         ram[53] = ldiac_n;
         ram[54] = sub_addr;
         ram[55] = jpnz_l2;
-        ram[56] = nop_addr;
-        ram[57] = endop_addr;
+        //ram[56] = nop_addr;
+        ram[56] = endop_addr;
     end
 
     always @(posedge clk) begin

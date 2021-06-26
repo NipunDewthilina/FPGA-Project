@@ -20,6 +20,8 @@ module processor ( input clk,
 	 wire [11:0] ac_out;
 	 wire [11:0] r_out;
 
+	wire [11:0] alu_in;
+
 	 wire [11:0] ir_out;
 
 	 wire [15:0] write_en ;
@@ -45,7 +47,7 @@ module processor ( input clk,
 
 	//register R
 	 rr #(.reg_size(N_reg)) reg_r (.clk(clk), .write_en (write_en 
-	[13]),.datain(ac_out),.dataout(regr_out ));
+	[5]),.datain(r_out),.dataout(regr_out ));
 
 	//register ir
 	ir #(.N(N_bus)) ir (.clk(clk),.write_en(write_en[3]),.datain(bus_out),
@@ -103,7 +105,7 @@ module processor ( input clk,
 
 	//register Accumilator
 	 ac #(.N(N_bus)) ac1(.clk(clk), .write_en (write_en 
-	[4]),.datain(bus_out),.read_en(read_en),.dataout(ac_out),.alu_out(
+	[4]),.datain(bus_out),.dataout(ac_out),.alu_in(alu_in),.alu_out(
 	alu_out),.alu_to_ac (write_en [12]),.inc_en(inc_en[4]),
 	.clr_en(clr_en[4]),.r_out(r_out));
 	// (
@@ -122,7 +124,7 @@ module processor ( input clk,
 	// inc_en(inc_en[1]));
 
 	//register alu
-	 alu #(.N(N_reg),.width_of_i(width_of_i)) alu1 (.clk(clk),.in1(regr_out ),.in2(ac_out),
+	 alu #(.N(N_reg),.width_of_i(width_of_i)) alu1 (.clk(clk),.in1(alu_in),.in2(regr_out),
 	 .alu_op(alu_op),.alu_out(alu_out),.z(z));
 	// (
 	//     input clk,

@@ -79,216 +79,218 @@ module control (
         case (present)
             start1: begin
                 read_en <= 4'd0;
-                write_en <= 16'b0000000000000000;
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000110;
+                                 // fedcba9876543210
+                write_en <=     16'b0000000000000000;
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000110;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             fetch1: begin
                 read_en <= 4'd13; //IM
-                write_en <= 16'b0000000000001000;
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                                 // fedcba9876543210
+                write_en <=     16'b0000000000001000;
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch2;
             end
 
             fetch2: begin 
                 read_en <= 4'd0;
-                write_en <= 16'b0000000000000000;
-                inc_en <= 16'b0000000000000010; //pc
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000000000;
+                inc_en <=       16'b0000000000000010; //pc
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= instruction;
             end
 
             ldac1: begin
                 read_en <= 4'd5; //ac
-                write_en <= 16'b0000000000000100; //ar
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000000100; //ar
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= ldac2;
             end
 
             ldac2: begin
                 read_en <= 4'd12; //DM
-                write_en <= 16'b0000000000010000; //ac
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000010000; //ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             ldiac1: begin
                 read_en <= 4'd4; //IR
-                write_en <= 16'b0000000000000100; //ar
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000000100; //ar
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= ldiac2;
             end
 
             ldiac2: begin
                 read_en <= 4'd12; //DM
-                write_en <= 16'b0000000000010000; //ac
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000010000; //ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             stac1: begin
                 read_en <= 4'd5; //ac
-                write_en <= 16'b0000100000000000; //dm
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000100000000000; //dm
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             mvac1: begin
-                read_en <= 4'd14; //ac
-                write_en <= 16'b0000000000100000; //r
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                read_en <= 4'd0; //ac
+                write_en <=     16'b000000000100000; //r
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             mvacar: begin
                 read_en <= 4'd5; //ac
-                write_en <= 16'b0000000000000100; //ar
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000000100; //ar
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             mvacr1: begin
                 read_en <= 4'd5; //ac
-                write_en <= 16'b0000010000000000; //r1
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000010000000000; //r1
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             mvacr2: begin
                 read_en <= 4'd5; //ac
-                write_en <= 16'b0000001000000000; //r2
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000001000000000; //r2
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             mvacr3: begin
                 read_en <= 4'd5; //ac
-                write_en <= 16'b0000000100000000; //r3
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000100000000; //r3
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
                 
             mvacr4: begin
                 read_en <= 4'd5; //ac
-                write_en <= 16'b0000000010000000; //r4
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000010000000; //r4
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             mvr1ac: begin
                 read_en <= 4'd7; //r1
-                write_en <= 16'b0000000000010000; //ac
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000010000; //ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             mvr2ac: begin
                 read_en <= 4'd8; //r2
-                write_en <= 16'b0000000000010000; //ac
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000010000; //ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             mvr3ac: begin
                 read_en <= 4'd9; //r3
-                write_en <= 16'b0000000000010000; //ac
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000010000; //ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             mvr4ac: begin
                 read_en <= 4'd10; //r4
-                write_en <= 16'b0000000000010000; //ac
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000010000; //ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             add1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b0001000000000000;  //alu_to_ac changed 22/06/2021
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
-                alu_op <= 3'd1; //add
+                write_en <=     16'b0001000000010000;  //alu_to_ac changed 22/06/2021
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
+                alu_op <=       3'd1; //add
                 next <= fetch1;
             end
 
             sub1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b0001000000000000;  //alu_to_ac
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0001000000010000;  //alu_to_ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd2; //sub
                 next <= fetch1;
             end
 
             mult1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b0001000000000000;  //alu_to_ac
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0001000000010000;  //alu_to_ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd3; //mult
                 next <= fetch1;
             end
 
             lshift1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b0001000000000000; //alu_to_ac
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0001000000010000; //alu_to_ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd4; //lshift
                 next <= fetch1;
             end
 
             inac1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b0000000000000000;  //ac
-                inc_en <= 16'b0000000000010000;//ac increment
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000000000;  //ac
+                inc_en <=       16'b0000000000010000;//ac increment
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             jpnz1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b0000000000000000;  
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000000000;  
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
 
                 if (z == 1)
@@ -299,18 +301,18 @@ module control (
 
             jpnz2: begin
                 read_en <= 4'd4; //ir
-                write_en <= 16'b0000000000000010; //pc  
-                inc_en <= 16'b0000000000000000; 
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000000010; //pc  
+                inc_en <=       16'b0000000000000000; 
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
             jmpz1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b0000000000000000;  
-                inc_en <= 16'b0000000000000000;
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000000000;  
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
 
                 if (z == 0)
@@ -321,17 +323,18 @@ module control (
 
             jmpz2: begin
                 read_en <= 4'd4; //ir
-                write_en <= 16'b0000000000000010; //pc  
-                inc_en <= 16'b0000000000000000; 
-                clr_en <= 16'b0000000000000000;
+                write_en <=     16'b0000000000000010; //pc  
+                inc_en <=       16'b0000000000000000; 
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
              endop: begin
                 read_en <= 4'd0;
-                write_en <= 16'b0000000000000000 ;
-                inc_en <= 16'b0000000000000000 ;
+                write_en <=     16'b0000000000000000 ;
+                inc_en <=       16'b0000000000000000 ;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= endop;
                 end
