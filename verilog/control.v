@@ -15,7 +15,7 @@ module control (
     reg [5:0] next = 5'd0;
 
     reg [10:0] address = 11'd0;
-    instruction_ext = {address,instruction};
+    wire instruction_ext = {address,instruction};
 
     parameter 
     start1 = 5'd0,
@@ -268,7 +268,7 @@ module control (
 
             lshift1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b00010000000000000; //alu_to_ac
+                write_en <= 16'b0001000000000000; //alu_to_ac
                 inc_en <= 16'b0000000000000000;
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd4; //lshift
@@ -277,7 +277,7 @@ module control (
 
             inac1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b00000000000000000;  //ac
+                write_en <= 16'b0000000000000000;  //ac
                 inc_en <= 16'b0000000000010000;//ac increment
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd0;
@@ -286,7 +286,7 @@ module control (
 
             jpnz1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b00000000000000000;  
+                write_en <= 16'b0000000000000000;  
                 inc_en <= 16'b0000000000000000;
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd0;
@@ -299,7 +299,7 @@ module control (
 
             jpnz2: begin
                 read_en <= 4'd4; //ir
-                write_en <= 16'b00000000000000010; //pc  
+                write_en <= 16'b0000000000000010; //pc  
                 inc_en <= 16'b0000000000000000; 
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd0;
@@ -308,7 +308,7 @@ module control (
 
             jmpz1: begin
                 read_en <= 4'd0; 
-                write_en <= 16'b00000000000000000;  
+                write_en <= 16'b0000000000000000;  
                 inc_en <= 16'b0000000000000000;
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd0;
@@ -321,7 +321,7 @@ module control (
 
             jmpz2: begin
                 read_en <= 4'd4; //ir
-                write_en <= 16'b00000000000000010; //pc  
+                write_en <= 16'b0000000000000010; //pc  
                 inc_en <= 16'b0000000000000000; 
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd0;

@@ -6,7 +6,7 @@ module regr #(
     input clk,
     input write_en,
     input [N-1:0] datain,
-    output reg [N-1:0] dataout
+    output reg [11:0] dataout
 );
 
     always @(posedge clk) begin

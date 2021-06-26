@@ -121,7 +121,7 @@ module processor ( input clk,
 	// control unit
 	 control control1 (.clk(clk),.z(z),.instruction 
 	(ir_out),.alu_op(alu_op),.write_en (write_en ),.
-	read_en(read_en),.inc_en(inc_en),.clr_en(clr_en),
+	read_en(read_en),.inc_en(inc_en),.clr_en(clr_en)
 	// .status(status)
 	,.end_process (end_process ));
 

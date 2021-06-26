@@ -7,7 +7,7 @@ input [11:0] r4,
 input [11:0] ir,
 input [11:0] ac,
 input [11:0] dm,
-input [16:0] im,
+input [11:0] im,
 output reg [N-1:0] busout ) ;
 always @(r1 or r2 or r3 or r4 or ir or ac or im or read_en or dm)
 
@@ -20,7 +20,7 @@ always @(r1 or r2 or r3 or r4 or ir or ac or im or read_en or dm)
    4'd9: busout <= r3+17'd0;
    4'd10: busout <= r4+17'd0;
    4'd12: busout <= dm + 17'd0;
-   4'd13: busout <= im;
+   4'd13: busout <= im+ 17'd0;
    default: busout <= 17'd0;
    endcase
    end
