@@ -20,12 +20,13 @@ module processor ( input clk,
 	 wire [11:0] ac_out;
 	 wire [11:0] r_out;
 
-	 wire [16:0] ir_out;
+	 wire [11:0] ir_out;
 
 	 wire [15:0] write_en ;
 	 wire [3:0] read_en;
 	 wire [15:0] inc_en;
 	 wire [15:0] clr_en;
+	 wire [4:0] instruction;
 	//  wire [15:0] mem0;
 	//  wire [15:0] mem1;
 	//  wire [15:0] mem2;
@@ -45,6 +46,20 @@ module processor ( input clk,
 	//register R
 	 rr #(.reg_size(N_reg)) reg_r (.clk(clk), .write_en (write_en 
 	[13]),.datain(ac_out),.dataout(regr_out ));
+
+	//register ir
+	ir #(.N(N_bus)) ir (.clk(clk),.write_en(write_en[3]),.datain(bus_out),
+	.inc_en(inc_en[3]),.dataout(ir_out),.instruction(instruction));
+// 	(
+//     input clk,
+//     input write_en,
+//     // input read_en,
+//     input [N-1:0] datain,
+//     input inc_en,
+//     output reg [11:0] dataout = 12'd0,
+//     output reg [4:0] instruction
+    
+// );
 
 	//register R1
 	 regr #(.N(N_bus)) regr_r1(.clk(clk), .write_en (write_en 
@@ -120,7 +135,7 @@ module processor ( input clk,
 
 	// control unit
 	 control control1 (.clk(clk),.z(z),.instruction 
-	(ir_out),.alu_op(alu_op),.write_en (write_en ),.
+	(instruction),.alu_op(alu_op),.write_en (write_en ),.
 	read_en(read_en),.inc_en(inc_en),.clr_en(clr_en)
 	// .status(status)
 	,.end_process (end_process ));

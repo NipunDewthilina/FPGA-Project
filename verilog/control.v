@@ -327,6 +327,14 @@ module control (
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
+
+             endop: begin
+                read_en <= 4'd0;
+                write_en <= 16'b0000000000000000 ;
+                inc_en <= 16'b0000000000000000 ;
+                alu_op <= 3'd0;
+                next <= endop;
+                end
     endcase 
 	 end //added end
 endmodule

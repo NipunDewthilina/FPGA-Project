@@ -33,8 +33,12 @@ module datamemory #(
         ram[322]=12'd7;
         ram[323]=12'd8;
     end
+//     2]
+// 3]
+// 66
+// 67
     always @(posedge clk) begin
-        r1 <= ram[2];
+        r1 <= ram[2]; 
         r2 <= ram[3];
         r3 <= ram[66];
         r4 <= ram[67];
