@@ -14,7 +14,7 @@ module datamemory #(
 );
     
     reg [11:0] ram [4095:0] ; //[N-1:0] [4095:0]
-    parameter start_bit = 4094;
+    localparam start_bit = 4094;
     initial begin
         
         ram[start_bit] = 12'd0;//i

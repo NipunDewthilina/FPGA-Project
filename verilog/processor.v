@@ -9,26 +9,24 @@ module processor ( input clk,
 	output [16:0] bus_out,
 	output end_process);
 
-	 wire [2:0] alu_op;
-	 wire [11:0] alu_out;
-
-	 wire [11:0] regr_out ;
-	 wire [11:0] regr1_out ;
-	 wire [11:0] regr2_out ;
-	 wire [11:0] regr3_out ;
-	 wire [11:0] regr4_out ;
-	 wire [11:0] ac_out;
-	 wire [11:0] r_out;
+	wire [2:0] alu_op;
+	wire [11:0] alu_out;
+	wire [11:0] regr_out ;
+	wire [11:0] regr1_out ;
+	wire [11:0] regr2_out ;
+	wire [11:0] regr3_out ;
+	wire [11:0] regr4_out ;
+	wire [11:0] ac_out;
+	wire [11:0] r_out;
 
 	wire [11:0] alu_in;
 
-	 wire [11:0] ir_out;
-
-	 wire [15:0] write_en ;
-	 wire [3:0] read_en;
-	 wire [15:0] inc_en;
-	 wire [15:0] clr_en;
-	 wire [5:0] instruction;
+	wire [11:0] ir_out;
+	wire [15:0] write_en ;
+	wire [3:0] read_en;
+	wire [15:0] inc_en;
+	wire [15:0] clr_en;
+	wire [5:0] instruction;
 	//  wire [15:0] mem0;
 	//  wire [15:0] mem1;
 	//  wire [15:0] mem2;
@@ -39,15 +37,14 @@ module processor ( input clk,
 	//  wire [15:0] mem7;
 	//  wire [15:0] mem8;
 
-	 wire [15:0] z ;
-
-	 parameter N_bus = 17;
-	 parameter N_reg = 12;
-	 parameter width_of_i = 6;
+	wire [15:0] z ;
+	localparam  N_bus = 17;
+	localparam N_reg = 12;
+	localparam width_of_i = 6;
 
 	//register R
 	 rr #(.reg_size(N_reg)) reg_r (.clk(clk), .write_en (write_en 
-	[5]),.datain(r_out),.dataout(regr_out ),.r_to_alu(write_en[12]));
+	[5]),.datain(r_out),.dataout(regr_out ),.r_to_alu(write_en[14]));
 
 	//register ir
 	ir #(.N(N_bus)) ir (.clk(clk),.write_en(write_en[3]),.datain(bus_out),
@@ -107,7 +104,7 @@ module processor ( input clk,
 	 ac #(.N(N_bus)) ac1(.clk(clk), .write_en (write_en 
 	[4]),.datain(bus_out),.dataout(ac_out),.alu_in(alu_in),.alu_out(
 	alu_out),.alu_to_ac (write_en [12]),.inc_en(inc_en[4]),
-	.clr_en(clr_en[4]),.r_out(r_out),.ac_to_r(write_en[5]));
+	.clr_en(clr_en[4]),.r_out(r_out),.ac_to_r(write_en[5]),.ac_to_alu(write_en[14]));
 	// (
 	//     input write_en,
 	//     // input [3:0]read_en,

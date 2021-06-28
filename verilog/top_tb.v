@@ -23,7 +23,7 @@ initial begin
     repeat(1000) begin
         @ (posedge clk)
         if (end_process ==1) begin
-        // #(CLK_PERIOD*3);
+         #(CLK_PERIOD*3);
             $display("hi");
             $display(r1);
             $display(r2);

@@ -7,7 +7,7 @@ module top
     output wire [11:0] r4,
     output wire end_process
 );
-    wire  [11:0] dm_out;
+    wire [11:0] dm_out;
     wire [16:0] im_out;
 
     // reg [1:0] status;
@@ -28,12 +28,14 @@ module top
     processor core1 (
     .clk(clk),.dm_out(dm_out),.im_out(im_out),
     .dm_en(dm_en),.pc_out(pc_out),.ar_out(ar_out),.bus_out(bus_out),
-    .end_process(end_process));
+    .end_process(end_process)
+    );
 
     datamemory #(.N(17)) dm
     (
 	 .clk(clk),.write_en(dm_en),.addr(ar_out),.datain(bus_out),
-    .dataout(dm_out),.r1(r1),.r2(r2),.r3(r3),.r4(r4));
+    .dataout(dm_out),.r1(r1),.r2(r2),.r3(r3),.r4(r4)
+    );
 
     instr_mem #(.width_in(12),.width_out(17)) im
     (

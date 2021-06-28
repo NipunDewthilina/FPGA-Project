@@ -7,77 +7,77 @@ output reg[width_out-1:0] instr_out
 
     reg [width_out-1:0] ram [2047:0];
 
-    parameter ldac = 5'd3;
-    parameter nop = 5'd28;
-    parameter mvacar = 5'd10;
-    parameter mvac = 5'd9;
-    parameter mvacr1 = 5'd11;
-    parameter mvacr2 = 5'd12;
-    parameter mvacr3 = 5'd13;
-    parameter mvacr4 = 5'd14;
-    parameter mvr1ac = 5'd15;
-    parameter mvr2ac = 5'd16;
-    parameter mvr3ac = 5'd17;
-    parameter mvr4ac = 5'd18;
-    parameter ldiac = 5'd5;
-    parameter stac = 5'd8;
-    parameter add = 5'd19;
-    parameter mult = 5'd20;
-    parameter lshift = 5'd21;
-    parameter sub = 5'd22;
-    parameter inac = 5'd23;
-    parameter jpnz = 5'd24;
-    parameter jmpz = 5'd26;
-    parameter endop = 5'd31;
+    localparam ldac = 5'd3;
+    localparam nop = 5'd28;
+    localparam mvacar = 5'd10;
+    localparam mvac = 5'd9;
+    localparam mvacr1 = 5'd11;
+    localparam mvacr2 = 5'd12;
+    localparam mvacr3 = 5'd13;
+    localparam mvacr4 = 5'd14;
+    localparam mvr1ac = 5'd15;
+    localparam mvr2ac = 5'd16;
+    localparam mvr3ac = 5'd17;
+    localparam mvr4ac = 5'd18;
+    localparam ldiac = 5'd5;
+    localparam stac = 5'd8;
+    localparam add = 5'd19;
+    localparam mult = 5'd20;
+    localparam lshift = 5'd21;
+    localparam sub = 5'd22;
+    localparam inac = 5'd23;
+    localparam jpnz = 5'd24;
+    localparam jmpz = 5'd26;
+    localparam endop = 5'd31;
 
-    parameter operand = 12'd0;
+    localparam operand = 12'd0;
 
-    parameter nop_addr = {nop,operand};
-    parameter add_addr = {add,operand};
-    parameter mult_addr = {mult,operand};
-    parameter lshift_addr = {lshift,operand};
-    parameter mvacar_addr= {mvacar,operand};
-    parameter mvac_addr = {mvac,operand};
-    parameter mvacr1_addr={mvacr1,operand};
-    parameter mvacr2_addr={mvacr2,operand};
-    parameter mvacr3_addr={mvacr3,operand};
-    parameter mvacr4_addr={mvacr4,operand};
-    parameter mvr1ac_addr={mvr1ac,operand};
-    parameter mvr2ac_addr={mvr2ac,operand};
-    parameter mvr3ac_addr={mvr3ac,operand};
-    parameter mvr4ac_addr={mvr4ac,operand};
-    parameter sub_addr = {sub,operand};
-    parameter endop_addr = {endop,operand};
-    parameter inac_addr = {inac,operand};
-    parameter ldac_addr = {ldac,operand};
-    parameter stac_addr = {stac,operand};
-    
-    parameter addr_i = 12'd4094;
-    parameter addr_j = 12'd4093;
-    parameter addr_k = 12'd4092;
+    localparam nop_addr = {nop,operand};
+    localparam add_addr = {add,operand};
+    localparam mult_addr = {mult,operand};
+    localparam lshift_addr = {lshift,operand};
+    localparam mvacar_addr= {mvacar,operand};
+    localparam mvac_addr = {mvac,operand};
+    localparam mvacr1_addr={mvacr1,operand};
+    localparam mvacr2_addr={mvacr2,operand};
+    localparam mvacr3_addr={mvacr3,operand};
+    localparam mvacr4_addr={mvacr4,operand};
+    localparam mvr1ac_addr={mvr1ac,operand};
+    localparam mvr2ac_addr={mvr2ac,operand};
+    localparam mvr3ac_addr={mvr3ac,operand};
+    localparam mvr4ac_addr={mvr4ac,operand};
+    localparam sub_addr = {sub,operand};
+    localparam endop_addr = {endop,operand};
+    localparam inac_addr = {inac,operand};
+    localparam ldac_addr = {ldac,operand};
+    localparam stac_addr = {stac,operand};
 
-    parameter addr_n = 12'd4091;
-    parameter addr_2n = 12'd4090;
-    parameter addr_3n = 12'd4089;
+    localparam addr_i = 12'd4094;
+    localparam addr_j = 12'd4093;
+    localparam addr_k = 12'd4092;
 
-    parameter addr_l1 = 12'd0;
-    parameter addr_l2 = 12'd40;
-    parameter addr_l3 = 12'd49;
+    localparam addr_n = 12'd4091;
+    localparam addr_2n = 12'd4090;
+    localparam addr_3n = 12'd4089;
 
-    parameter stac_i = {stac, addr_i};
-    parameter stac_j = {stac, addr_j};
-    parameter stac_k = {stac, addr_k};
+    localparam addr_l1 = 12'd0;
+    localparam addr_l2 = 12'd40;
+    localparam addr_l3 = 12'd49;
 
-    parameter ldiac_i = {ldiac, addr_i};
-    parameter ldiac_j = {ldiac, addr_j};
-    parameter ldiac_k = {ldiac, addr_k};
-    parameter ldiac_n = {ldiac, addr_n};
-    parameter ldiac_2n = {ldiac, addr_2n};
-    parameter ldiac_3n = {ldiac, addr_3n};
+    localparam stac_i = {stac, addr_i};
+    localparam stac_j = {stac, addr_j};
+    localparam stac_k = {stac, addr_k};
 
-    parameter jpnz_l1 = {jpnz, addr_l1};
-    parameter jpnz_l2 = {jpnz, addr_l2};
-    parameter jpnz_l3 = {jpnz, addr_l3};
+    localparam ldiac_i = {ldiac, addr_i};
+    localparam ldiac_j = {ldiac, addr_j};
+    localparam ldiac_k = {ldiac, addr_k};
+    localparam ldiac_n = {ldiac, addr_n};
+    localparam ldiac_2n = {ldiac, addr_2n};
+    localparam ldiac_3n = {ldiac, addr_3n};
+
+    localparam jpnz_l1 = {jpnz, addr_l1};
+    localparam jpnz_l2 = {jpnz, addr_l2};
+    localparam jpnz_l3 = {jpnz, addr_l3};
 
     initial begin
         ram[0] = ldiac_i; //loop1
