@@ -97,20 +97,20 @@ module control (
                 read_en <= 4'd13; //IM
                                  // fedcba9876543210
                 write_en <=     16'b0000000000001000;//IR
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= instruction;
+                next <= fetch2;
             end
 
-            // fetch2: begin 
-            //     read_en <= 4'd13;//im
-            //     write_en <=     16'b0000000000000000;//ir
-            //     inc_en <=       16'b0000000000000010; 
-            //     clr_en <=       16'b0000000000000000;
-            //     alu_op <= 3'd0;
-            //     next <= instruction ;
-            // end
+            fetch2: begin 
+                read_en <= 4'd13;//im
+                write_en <=     16'b0000000000001000;//ir
+                inc_en <=       16'b0000000000000010; 
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= instruction ;
+            end
 
             ldac1: begin //read ac write ar!!
                 read_en <= 4'd5; //ac
