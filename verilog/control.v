@@ -124,7 +124,7 @@ module control (
             ldac2: begin //Read DM Write AC
                 read_en <= 4'd12; //DM
                 write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000000;
+                inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -151,7 +151,7 @@ module control (
             ldiac2: begin //read DM Write AC
                 read_en <= 4'd12; //DM
                 write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000000;
+                inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -365,13 +365,22 @@ module control (
             end
 
              endop: begin
-                read_en <= 4'd0;
+                read_en <= 4'd12;
                 write_en <=     16'b0000000000000000 ;
                 inc_en <=       16'b0000000000000010 ;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= endop;
                 end
+            default : begin
+                read_en <= 4'd0;
+                write_en <=     16'b0000000000000000 ;
+                inc_en <=       16'b0000000000000000 ;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= fetch1;
+            end
+                
     endcase 
 	 end //added end
 endmodule
