@@ -11,8 +11,8 @@ module control (
     output reg end_process
 );
 
-    reg [5:0] present = 5'd0;
-    reg [5:0] next = 5'd0;
+    reg [5:0] present = 5'd1;
+    reg [5:0] next = 5'd1;
 
     reg [10:0] address = 10'd0;
     wire instruction_ext = {address,instruction};
