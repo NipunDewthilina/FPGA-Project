@@ -305,7 +305,7 @@ module control (
 
             add1: begin
                 read_en <= 4'd0; 
-                write_en <=     16'b0001000000010000;  //alu_to_ac changed 22/06/2021
+                write_en <=     16'b0001000000000000;  //alu_to_ac changed 22/06/2021
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <=       3'd1; //add
@@ -314,7 +314,7 @@ module control (
 
             sub1: begin
                 read_en <= 4'd0; 
-                write_en <=     16'b0001000000010000;  //alu_to_ac
+                write_en <=     16'b0001000000000000;  //alu_to_ac
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd2; //sub
@@ -323,7 +323,7 @@ module control (
 
             mult1: begin
                 read_en <= 4'd0; 
-                write_en <=     16'b0001000000010000;  //alu_to_ac
+                write_en <=     16'b0001000000000000;  //alu_to_ac
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd3; //mult
@@ -332,7 +332,7 @@ module control (
 
             lshift1: begin
                 read_en <= 4'd0; 
-                write_en <=     16'b0001000000010000; //alu_to_ac
+                write_en <=     16'b0001000000000000; //alu_to_ac
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd4; //lshift

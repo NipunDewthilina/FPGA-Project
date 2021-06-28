@@ -47,7 +47,7 @@ module processor ( input clk,
 
 	//register R
 	 rr #(.reg_size(N_reg)) reg_r (.clk(clk), .write_en (write_en 
-	[5]),.datain(r_out),.dataout(regr_out ));
+	[5]),.datain(r_out),.dataout(regr_out ),.r_to_alu(write_en[12]));
 
 	//register ir
 	ir #(.N(N_bus)) ir (.clk(clk),.write_en(write_en[3]),.datain(bus_out),
@@ -107,7 +107,7 @@ module processor ( input clk,
 	 ac #(.N(N_bus)) ac1(.clk(clk), .write_en (write_en 
 	[4]),.datain(bus_out),.dataout(ac_out),.alu_in(alu_in),.alu_out(
 	alu_out),.alu_to_ac (write_en [12]),.inc_en(inc_en[4]),
-	.clr_en(clr_en[4]),.r_out(r_out));
+	.clr_en(clr_en[4]),.r_out(r_out),.ac_to_r(write_en[5]));
 	// (
 	//     input write_en,
 	//     // input [3:0]read_en,
