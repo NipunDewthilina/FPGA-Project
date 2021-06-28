@@ -56,7 +56,7 @@ module control (
     stac1x =     6'd36,
     fetch1x =    6'd37;
 
-    always @(posedge clk) //changed from posedge to negedge
+    always @(negedge clk) //changed from posedge to negedge
         present <= next;
 
     always @(posedge clk) begin 
@@ -106,7 +106,7 @@ module control (
             fetch1x: begin
                 read_en <= 4'd0; //IM
                                  // fedcba9876543210
-                write_en <=     16'b0000000000001000;
+                write_en <=     16'b0000000000000100;
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
