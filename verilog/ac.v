@@ -14,7 +14,6 @@ module ac #(
 );
 
 always @(posedge clk) begin
-    r_out <= datain[11:0];
     if (inc_en == 1)
         dataout <= dataout + 12'd1;
     if (clr_en == 1)

@@ -96,17 +96,7 @@ module control (
             fetch1: begin
                 read_en <= 4'd13; //IM
                                  // fedcba9876543210
-                write_en <=     16'b0000000000000000;
-                inc_en <=       16'b0000000000000000;
-                clr_en <=       16'b0000000000000000;
-                alu_op <= 3'd0;
-                next <= fetch1x;
-            end
-
-            fetch1x: begin
-                read_en <= 4'd0; //IM
-                                 // fedcba9876543210
-                write_en <=     16'b0000000000000100;
+                write_en <=     16'b0000000000001000;//IR
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
@@ -114,7 +104,7 @@ module control (
             end
 
             fetch2: begin 
-                read_en <= 4'd0;
+                read_en <= 4'd13;
                 write_en <=     16'b0000000000000000;
                 inc_en <=       16'b0000000000000000; //pc
                 clr_en <=       16'b0000000000000000;
@@ -122,17 +112,8 @@ module control (
                 next <= instruction ;
             end
 
-            ldac1: begin //read ac!!
+            ldac1: begin //read ac write ar!!
                 read_en <= 4'd5; //ac
-                write_en <=     16'b0000000000000000; //ar
-                inc_en <=       16'b0000000000000000;
-                clr_en <=       16'b0000000000000000;
-                alu_op <= 3'd0;
-                next <= ldac1x;
-            end
-
-            ldac1x: begin//write ar!!
-                read_en <= 4'd0; //ac
                 write_en <=     16'b0000000000000100; //ar
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
@@ -140,9 +121,9 @@ module control (
                 next <= ldac2;
             end
 
-            ldac2: begin //Read DM
+            ldac2: begin //Read DM Write AC
                 read_en <= 4'd12; //DM
-                write_en <=     16'b0000000000000000; //ac
+                write_en <=     16'b0000000000010000; //ac
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
@@ -150,7 +131,7 @@ module control (
             end
 
             ldac2x: begin //Write AC
-                read_en <= 4'd0; //DM
+                read_en <= 4'd12; //DM
                 write_en <=     16'b0000000000010000; //ac
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
@@ -158,35 +139,26 @@ module control (
                 next <= fetch1;
             end
 
-            ldiac1: begin //Read IR
+            ldiac1: begin //Read IR Write AR
                 read_en <= 4'd4; //IR
                 write_en <=     16'b0000000000000000; //ar
-                inc_en <=       16'b0000000000000000;
-                clr_en <=       16'b0000000000000000;
-                alu_op <= 3'd0;
-                next <= ldiac1x;
-            end
-
-            ldiac1x: begin //Write AR
-                read_en <= 4'd0; //IR
-                write_en <=     16'b0000000000000100; //ar
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= ldiac2;
             end
 
-            ldiac2: begin //read DM
+            ldiac2: begin //read DM Write AC
                 read_en <= 4'd12; //DM
-                write_en <=     16'b0000000000000000; //ac
+                write_en <=     16'b0000000000010000; //ac
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= ldiac2x;
             end
 
-            ldiac2x: begin //Write AC
-                read_en <= 4'd0; //DM
+            ldiac2x: begin //read DM Write AC
+                read_en <= 4'd12; //DM
                 write_en <=     16'b0000000000010000; //ac
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
@@ -204,7 +176,7 @@ module control (
             end
 
             stac1x: begin //Write DM
-                read_en <= 4'd0; //ac
+                read_en <= 4'd5; //ac
                 write_en <=     16'b0000100000000000; //dm
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
@@ -214,7 +186,7 @@ module control (
 
 
             mvac1: begin
-                read_en <= 4'd0; //ac
+                read_en <= 4'd5; //ac
                 write_en <=     16'b000000000100000; //r
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
@@ -305,7 +277,7 @@ module control (
 
             add1: begin
                 read_en <= 4'd0; 
-                write_en <=     16'b0001000000000000;  //alu_to_ac changed 22/06/2021
+                write_en <=     16'b0001000000100000;  //alu_to_ac changed 22/06/2021
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <=       3'd1; //add
@@ -314,7 +286,7 @@ module control (
 
             sub1: begin
                 read_en <= 4'd0; 
-                write_en <=     16'b0001000000000000;  //alu_to_ac
+                write_en <=     16'b0001000000100000;  //alu_to_ac
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd2; //sub
@@ -323,7 +295,7 @@ module control (
 
             mult1: begin
                 read_en <= 4'd0; 
-                write_en <=     16'b0001000000000000;  //alu_to_ac
+                write_en <=     16'b0001000000100000;  //alu_to_ac
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd3; //mult
@@ -332,7 +304,7 @@ module control (
 
             lshift1: begin
                 read_en <= 4'd0; 
-                write_en <=     16'b0001000000000000; //alu_to_ac
+                write_en <=     16'b0001000000100000; //alu_to_ac
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd4; //lshift
