@@ -25,7 +25,7 @@ module alu_tb;
     localparam width_of_index = 6;
     reg [2:0] alu_op;
     reg signed [N-1:0] in1, in2;
-    wire [N-1:0] alu_out, z;
+    wire [15:0] alu_out, z;
     //wire z;
 
     alu #(.N(N),.width_of_index(width_of_index)) dut (.clk(clk), .in1(in1), .in2(in2), .alu_op(alu_op), .alu_out(alu_out), .z(z));
