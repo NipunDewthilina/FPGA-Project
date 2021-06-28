@@ -56,7 +56,7 @@ module control (
     stac1x =     6'd36,
     fetch1x =    6'd37;
 
-    always @(negedge clk) //changed from posedge to negedge
+    always @(posedge clk) //changed from posedge to negedge
         present <= next;
 
     always @(posedge clk) begin 
