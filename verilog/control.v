@@ -124,7 +124,7 @@ module control (
             ldac2: begin //Read DM Write AC
                 read_en <= 4'd12; //DM
                 write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000000;
+                inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -151,7 +151,7 @@ module control (
             ldiac2: begin //read DM Write AC
                 read_en <= 4'd12; //DM
                 write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000000;
+                inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -281,7 +281,7 @@ module control (
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <=       3'd1; //add
-                next <= nop1;
+                next <= fetch1;
             end
 
             sub1: begin
@@ -290,7 +290,7 @@ module control (
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd2; //sub
-                next <= nop1;
+                next <= fetch1;
             end
 
             mult1: begin
@@ -299,7 +299,7 @@ module control (
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd3; //mult
-                next <= nop1;
+                next <= fetch1;
             end
 
             lshift1: begin
@@ -308,7 +308,7 @@ module control (
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd4; //lshift
-                next <= nop1;
+                next <= fetch1;
             end
 
             inac1: begin
@@ -317,7 +317,7 @@ module control (
                 inc_en <=       16'b0000000000010010;//ac increment
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= nop1;
+                next <= fetch1;
             end
 
             jpnz1: begin
@@ -328,7 +328,7 @@ module control (
                 alu_op <= 3'd0;
 
                 if (z == 1)
-                    next <= nop1;
+                    next <= fetch1;
                 else if(z==0)
                     next <= jpnz2;
             end
@@ -339,7 +339,7 @@ module control (
                 inc_en <=       16'b0000000000000010; 
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= nop1;
+                next <= fetch1;
             end
 
             jmpz1: begin
@@ -350,7 +350,7 @@ module control (
                 alu_op <= 3'd0;
 
                 if (z == 0)
-                    next <= nop1;
+                    next <= fetch1;
                 else if(z==1)
                     next <= jmpz2;
             end
@@ -361,9 +361,18 @@ module control (
                 inc_en <=       16'b0000000000000010; 
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= nop1;
+                next <= fetch1;
             end
-            nop1 : begin
+
+             endop: begin
+                read_en <= 4'd12;
+                write_en <=     16'b0000000000000000 ;
+                inc_en <=       16'b0000000000000010 ;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= endop;
+                end
+            default : begin
                 read_en <= 4'd0;
                 write_en <=     16'b0000000000000000 ;
                 inc_en <=       16'b0000000000000000 ;
@@ -371,14 +380,7 @@ module control (
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
-             endop: begin
-                read_en <= 4'd0;
-                write_en <=     16'b0000000000000000 ;
-                inc_en <=       16'b0000000000000010 ;
-                clr_en <=       16'b0000000000000000;
-                alu_op <= 3'd0;
-                next <= endop;
-                end
+                
     endcase 
 	 end //added end
 endmodule
