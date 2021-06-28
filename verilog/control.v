@@ -141,7 +141,7 @@ module control (
 
             ldiac1: begin //Read IR Write AR
                 read_en <= 4'd4; //IR
-                write_en <=     16'b0000000000000000; //ar
+                write_en <=     16'b0000000000000100; //ar
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
