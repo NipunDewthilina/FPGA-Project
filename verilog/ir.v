@@ -9,7 +9,7 @@ module ir #(
     input [N-1:0] datain,
     input inc_en,
     output reg [11:0] dataout = 12'd0,
-    output reg [5:0] instruction
+    output reg [5:0] instruction = 6'd0
     
 );
 
