@@ -56,7 +56,7 @@ module control (
     stac1x =     6'd36,
     fetch1x =    6'd37;
 
-    always @(posedge clk) //changed from posedge to negedge
+    always @(negedge clk) //changed from posedge to negedge
         present <= next;
 
     always @(posedge clk) begin 
@@ -96,21 +96,21 @@ module control (
             fetch1: begin
                 read_en <= 4'd13; //IM
                                  // fedcba9876543210
-                write_en <=     16'b0000000000000000;//IR
+                write_en <=     16'b0000000000001000;//IR
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch2;
+                next <= instruction;
             end
 
-            fetch2: begin 
-                read_en <= 4'd13;//im
-                write_en <=     16'b0000000000001000;//ir
-                inc_en <=       16'b0000000000000000; 
-                clr_en <=       16'b0000000000000000;
-                alu_op <= 3'd0;
-                next <= instruction ;
-            end
+            // fetch2: begin 
+            //     read_en <= 4'd13;//im
+            //     write_en <=     16'b0000000000001000;//ir
+            //     inc_en <=       16'b0000000000000000; 
+            //     clr_en <=       16'b0000000000000000;
+            //     alu_op <= 3'd0;
+            //     next <= instruction ;
+            // end
 
             ldac1: begin //read ac write ar!!
                 read_en <= 4'd5; //ac
@@ -127,7 +127,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= ldac2x;
+                next <= fetch1;
             end
 
             ldac2x: begin //Write AC
@@ -154,17 +154,17 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= ldiac2x;
-            end
-
-            ldiac2x: begin //read DM Write AC
-                read_en <= 4'd12; //DM
-                write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000010;
-                clr_en <=       16'b0000000000000000;
-                alu_op <= 3'd0;
                 next <= fetch1;
             end
+
+            // ldiac2x: begin //read DM Write AC
+            //     read_en <= 4'd12; //DM
+            //     write_en <=     16'b0000000000010000; //ac
+            //     inc_en <=       16'b0000000000000010;
+            //     clr_en <=       16'b0000000000000000;
+            //     alu_op <= 3'd0;
+            //     next <= fetch1;
+            // end
 
             stac1: begin //Read AC
                 read_en <= 4'd5; //ac
