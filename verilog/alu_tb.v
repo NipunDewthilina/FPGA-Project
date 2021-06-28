@@ -38,25 +38,37 @@ module alu_tb;
       	$dumpfile("dump.vcd");
     	$dumpvars(1);
     
-        in1 <= 8'd5;
-        in2 <= 8'd10;
-        alu_op <= 2'd0;
+        in1 <= 12'd5;
+        in2 <= 12'd10;
+        alu_op <= 3'd0;
 
         @(posedge clk);
-        in1 <= 8'd30;
-        in2 <= 8'd10;
-        alu_op <= 2'd0;
+        in1 <= 12'd30;
+        in2 <= 12'd10;
+        alu_op <= 3'd0;
 	
         @(posedge clk);
-        in1 <= 8'd5;
-        in2 <= 8'd10;
-        alu_op <= 2'd1;
+        in1 <= 12'd5;
+        in2 <= 12'd10;
+        alu_op <= 3'd1;
 		
       #(CLK_PERIOD * 3);
         @(posedge clk);
-        in1 <= 8'd4;
-        in2 <= 8'd20;
-        alu_op <= 2'd2;
+        in1 <= 12'd4;
+        in2 <= 12'd20;
+        alu_op <= 3'd2;
+
+        #(CLK_PERIOD * 3);
+        @(posedge clk);
+        in1 <= 12'd4;
+        in2 <= 12'd20;
+        alu_op <= 3'd4;
+
+        #(CLK_PERIOD * 3);
+        @(posedge clk);
+        in1 <= 12'd6;
+        in2 <= 12'd20;
+        alu_op <= 3'd4;
 
         //$stop;
     end
