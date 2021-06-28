@@ -28,7 +28,7 @@ module processor ( input clk,
 	 wire [3:0] read_en;
 	 wire [15:0] inc_en;
 	 wire [15:0] clr_en;
-	 wire [4:0] instruction;
+	 wire [5:0] instruction;
 	//  wire [15:0] mem0;
 	//  wire [15:0] mem1;
 	//  wire [15:0] mem2;
