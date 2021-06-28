@@ -366,7 +366,7 @@ module control (
             nop1 : begin
                 read_en <= 4'd0;
                 write_en <=     16'b0000000000000000 ;
-                inc_en <=       16'b0000000000000010 ;
+                inc_en <=       16'b0000000000000000 ;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
