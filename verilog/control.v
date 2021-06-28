@@ -56,7 +56,7 @@ module control (
     stac1x =     6'd36,
     fetch1x =    6'd37;
 
-    always @(negedge clk) //changed from posedge to negedge
+    always @(posedge clk) //changed from posedge to negedge
         present <= next;
 
     always @(posedge clk) begin 
@@ -119,7 +119,7 @@ module control (
                 inc_en <=       16'b0000000000000010; //pc
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= instruction + 6'd0;
+                next <= instruction ;
             end
 
             ldac1: begin //read ac!!
