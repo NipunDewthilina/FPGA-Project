@@ -53,9 +53,10 @@ module control (
     ldac2x =     6'd33,
     ldiac1x =    6'd34,
     ldiac2x =    6'd35,
-    stac1x =     6'd36;
+    stac1x =     6'd36,
+    fetch1x =    6'd37;
 
-    always @(posedge clk)
+    always @(negedge clk)
         present <= next;
 
     always @(posedge clk) begin 
@@ -94,6 +95,16 @@ module control (
 
             fetch1: begin
                 read_en <= 4'd13; //IM
+                                 // fedcba9876543210
+                write_en <=     16'b0000000000000000;
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= fetch1x;
+            end
+
+            fetch1x: begin
+                read_en <= 4'd0; //IM
                                  // fedcba9876543210
                 write_en <=     16'b0000000000001000;
                 inc_en <=       16'b0000000000000000;

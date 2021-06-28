@@ -23,7 +23,7 @@ module alu_tb;
 
     localparam N = 12;
     localparam width_of_index = 6;
-    reg [1:0] alu_op;
+    reg [2:0] alu_op;
     reg signed [N-1:0] in1, in2;
     wire [N-1:0] alu_out, z;
     //wire z;
