@@ -92,7 +92,7 @@ module control (
                                  // fedcba9876543210
                 write_en <=     16'b0000000000000000;
                 inc_en <=       16'b0000000000000000;
-                clr_en <=       16'b0000000000000110;
+                clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
