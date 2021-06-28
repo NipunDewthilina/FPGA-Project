@@ -100,17 +100,17 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= instruction;
+                next <= fetch2;
             end
 
-            // fetch2: begin 
-            //     read_en <= 4'd13;//im
-            //     write_en <=     16'b0000000000001000;//ir
-            //     inc_en <=       16'b0000000000000000; 
-            //     clr_en <=       16'b0000000000000000;
-            //     alu_op <= 3'd0;
-            //     next <= instruction ;
-            // end
+            fetch2: begin 
+                read_en <= 4'd0;//im
+                write_en <=     16'b0000000000000000;//ir
+                inc_en <=       16'b0000000000000010; 
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= instruction ;
+            end
 
             ldac1: begin //read ac write ar!!
                 read_en <= 4'd5; //ac
@@ -124,7 +124,7 @@ module control (
             ldac2: begin //Read DM Write AC
                 read_en <= 4'd12; //DM
                 write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -151,7 +151,7 @@ module control (
             ldiac2: begin //read DM Write AC
                 read_en <= 4'd12; //DM
                 write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -178,7 +178,7 @@ module control (
             stac1x: begin //Write DM
                 read_en <= 4'd5; //ac
                 write_en <=     16'b0000100000000000; //dm
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -188,7 +188,7 @@ module control (
             mvac1: begin
                 read_en <= 4'd5; //ac
                 write_en <=     16'b000000000100000; //r
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -197,7 +197,7 @@ module control (
             mvacar: begin
                 read_en <= 4'd5; //ac
                 write_en <=     16'b0000000000000100; //ar
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -206,7 +206,7 @@ module control (
             mvacr1: begin
                 read_en <= 4'd5; //ac
                 write_en <=     16'b0000010000000000; //r1
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -215,7 +215,7 @@ module control (
             mvacr2: begin
                 read_en <= 4'd5; //ac
                 write_en <=     16'b0000001000000000; //r2
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -224,7 +224,7 @@ module control (
             mvacr3: begin
                 read_en <= 4'd5; //ac
                 write_en <=     16'b0000000100000000; //r3
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -233,7 +233,7 @@ module control (
             mvacr4: begin
                 read_en <= 4'd5; //ac
                 write_en <=     16'b0000000010000000; //r4
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -242,7 +242,7 @@ module control (
             mvr1ac: begin
                 read_en <= 4'd7; //r1
                 write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -251,7 +251,7 @@ module control (
             mvr2ac: begin
                 read_en <= 4'd8; //r2
                 write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -260,7 +260,7 @@ module control (
             mvr3ac: begin
                 read_en <= 4'd9; //r3
                 write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -269,7 +269,7 @@ module control (
             mvr4ac: begin
                 read_en <= 4'd10; //r4
                 write_en <=     16'b0000000000010000; //ac
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -278,7 +278,7 @@ module control (
             add1: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0001000000000000;  //alu_to_ac changed 22/06/2021
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <=       3'd1; //add
                 next <= fetch1;
@@ -287,7 +287,7 @@ module control (
             sub1: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0001000000000000;  //alu_to_ac
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd2; //sub
                 next <= fetch1;
@@ -296,7 +296,7 @@ module control (
             mult1: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0001000000000000;  //alu_to_ac
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd3; //mult
                 next <= fetch1;
@@ -305,7 +305,7 @@ module control (
             lshift1: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0001000000000000; //alu_to_ac
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd4; //lshift
                 next <= fetch1;
@@ -314,7 +314,7 @@ module control (
             inac1: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0000000000000000;  //ac
-                inc_en <=       16'b0000000000010010;//ac increment
+                inc_en <=       16'b0000000000010000;//ac increment
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -336,7 +336,7 @@ module control (
             jpnz2: begin
                 read_en <= 4'd4; //ir
                 write_en <=     16'b0000000000000010; //pc  
-                inc_en <=       16'b0000000000000010; 
+                inc_en <=       16'b0000000000000000; 
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -358,7 +358,7 @@ module control (
             jmpz2: begin
                 read_en <= 4'd4; //ir
                 write_en <=     16'b0000000000000010; //pc  
-                inc_en <=       16'b0000000000000010; 
+                inc_en <=       16'b0000000000000000; 
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
@@ -367,7 +367,7 @@ module control (
              endop: begin
                 read_en <= 4'd12;
                 write_en <=     16'b0000000000000000 ;
-                inc_en <=       16'b0000000000000010 ;
+                inc_en <=       16'b0000000000000000 ;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= endop;
