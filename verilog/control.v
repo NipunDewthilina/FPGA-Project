@@ -96,7 +96,7 @@ module control (
             fetch1: begin
                 read_en <= 4'd13; //IM
                                  // fedcba9876543210
-                write_en <=     16'b0000000000001000;//IR
+                write_en <=     16'b0000000000000000;//IR
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
@@ -104,9 +104,9 @@ module control (
             end
 
             fetch2: begin 
-                read_en <= 4'd13;
-                write_en <=     16'b0000000000000000;
-                inc_en <=       16'b0000000000000000; //pc
+                read_en <= 4'd13;//im
+                write_en <=     16'b0000000000001000;//ir
+                inc_en <=       16'b0000000000000000; 
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= instruction ;
