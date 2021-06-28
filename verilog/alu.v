@@ -13,11 +13,11 @@ module alu
     
     always @(posedge clk) begin
         case (alu_op)
-            3'd0 : alu_out <= in1;
             3'd1 : alu_out <= in1 + in2;
             3'd2 : alu_out <= in1 - in2;
             3'd3 : alu_out <= in1 * in2;
             3'd4 : alu_out <= in1 << width_of_i;
+            default : alu_out <= in1;
         endcase
 
         if (alu_out == 0)
