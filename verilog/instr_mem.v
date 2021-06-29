@@ -89,10 +89,10 @@ output reg[width_out-1:0] instr_out
         ram[6] = ldac_addr;
         ram[7] = mvacr2_addr;
         ram[8] = ldiac_k;
-        ram[9] = lshift_addr;
-        ram[10] = mvac_addr;
-        ram[11] = ldiac_j;
-        ram[12] = add_addr;
+        ram[9] = lshift_addr;//21
+        ram[10] = mvac_addr;//9
+        ram[11] = ldiac_j;//5
+        ram[12] = add_addr;//
         ram[13] = mvacar_addr;
         ram[14] = ldac_addr;
         ram[15] = mvac_addr;

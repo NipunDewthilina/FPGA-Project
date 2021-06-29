@@ -8,11 +8,13 @@ input [11:0] ir,
 input [11:0] ac,
 input [11:0] dm,
 input [16:0] im,
+input [11:0] r,
 output reg [N-1:0] busout ) ;
-always @(r1 or r2 or r3 or r4 or ir or ac or im or read_en or dm)
+always @(r or r1 or r2 or r3 or r4 or ir or ac or im or read_en or dm)
 
    begin
    case(read_en)
+   4'd3: busout <= r+17'd0;
    4'd4: busout <= ir+17'd0;
    4'd5: busout <= ac+17'd0;
    4'd7: busout <= r1+17'd0;
