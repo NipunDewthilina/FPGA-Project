@@ -186,7 +186,7 @@ output reg[width_out-1:0] instr_out
         ram[100]  = nop_addr;
         ram[101]  = nop_addr;
         ram[102] = sub_addr;
-        ram[103] = jpnz_l2;
+        ram[103] = jpnz_l1;
         ram[104] = nop_addr;
         ram[105] = nop_addr;
         ram[106] = nop_addr;
