@@ -12,14 +12,14 @@ module control (
     output reg end_process
 );
 
-    reg [5:0] present = 6'd0;
-    reg [5:0] next = 6'd0;
+    reg [5:0] present = 6'd43;
+    reg [5:0] next = 6'd43;
 
     wire [9:0] address = 10'd0;
     wire [15:0] instruction_ext = {address,instruction};
 
     localparam 
-    start1 =     6'd0,
+    start1 =     6'd43,
     fetch1 =     6'd1,
     fetch2 =     6'd2,
     ldac1 =      6'd3,
@@ -96,7 +96,7 @@ module control (
                                  // fedcba9876543210
                 write_en <=     16'b0000000000000000;
                 inc_en <=       16'b0000000000000000;
-                clr_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000010;
                 alu_op <= 3'd0;
                 if (start_process == 1)
                     next <= fetch1;
@@ -316,74 +316,74 @@ module control (
             add1: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0001000000000000;  //ac to alu, r to alu
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <=       3'd1; //add
-                next <=  fetch1;
+                next <=  add1x;
             end
 
-            // add1x: begin
-            //     read_en <= 4'd0; 
-            //     write_en <=     16'b0000000000000000;  //alu_to_ac 
-            //     inc_en <=       16'b0000000000000000;
-            //     clr_en <=       16'b0000000000000000;
-            //     alu_op <=       3'd0; //add
-            //     next <= fetch1;
-            // end
+            add1x: begin
+                read_en <= 4'd0; 
+                write_en <=     16'b0001000000000000;  //alu_to_ac 
+                inc_en <=       16'b0000000000000010;
+                clr_en <=       16'b0000000000000000;
+                alu_op <=       3'd0; //add
+                next <= fetch1;
+            end
 
             sub1: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0001000000000000;  //ac to alu, r to alu
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd2; //sub
-                next <=  fetch1;
+                next <=  sub1x;
             end
 
-            // sub1x: begin
-            //     read_en <= 4'd0; 
-            //     write_en <=     16'b0001000000000000;  //alu_to_ac
-            //     inc_en <=       16'b0000000000000000;
-            //     clr_en <=       16'b0000000000000000;
-            //     alu_op <= 3'd2; //sub
-            //     next <= fetch1;
-            // end
-
-            mult1: begin
+            sub1x: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0001000000000000;  //alu_to_ac
                 inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
-                alu_op <= 3'd3; //mult
-                next <=  fetch1;
+                alu_op <= 3'd0; //sub
+                next <= fetch1;
             end
 
-            // mult1x: begin
-            //     read_en <= 4'd0; 
-            //     write_en <=     16'b0001000000000000;  //ac to alu, r to alu
-            //     inc_en <=       16'b0000000000000000;
-            //     clr_en <=       16'b0000000000000000;
-            //     alu_op <= 3'd3; //mult
-            //     next <= fetch1;
-            // end
+            mult1: begin
+                read_en <= 4'd0; 
+                write_en <=     16'b0001000000000000;  //alu_to_ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd3; //mult
+                next <=  mult1x;
+            end
+
+            mult1x: begin
+                read_en <= 4'd0; 
+                write_en <=     16'b0001000000000000;  //ac to alu, r to alu
+                inc_en <=       16'b0000000000000010;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd0; //mult
+                next <= fetch1;
+            end
 
             lshift1: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0001000000000000; //alu_to_ac
-                inc_en <=       16'b0000000000000010;
+                inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd4; //lshift
-                next <=  fetch1;
+                next <=  lshift1x;
             end
 
-            // lshift1x: begin
-            //     read_en <= 4'd0; 
-            //     write_en <=     16'b0001000000000000; //alu_to_ac
-            //     inc_en <=       16'b0000000000000000;
-            //     clr_en <=       16'b0000000000000000;
-            //     alu_op <= 3'd4; //lshift
-            //     next <= fetch1;
-            // end
+            lshift1x: begin
+                read_en <= 4'd0; 
+                write_en <=     16'b0001000000000000; //alu_to_ac
+                inc_en <=       16'b0000000000000010;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd0; //lshift
+                next <= fetch1;
+            end
 
             inac1: begin
                 read_en <= 4'd0; 
