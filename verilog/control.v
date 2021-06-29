@@ -49,8 +49,8 @@ module control (
     inac1 =      6'd23,
     jpnz1 =      6'd24,
     jpnz2 =      6'd25,
-    jmpz1 =      6'd26,//notused
-    jmpz2 =      6'd27,//notused
+    // jmpz1 =      6'd26,//notused
+    // jmpz2 =      6'd27,//notused
     nop1 =       6'd28,
     clac1 =      6'd30,
     endop =      6'd31,
@@ -59,8 +59,10 @@ module control (
     ldiac1x =    6'd34,
     ldiac2x =    6'd35,
     stac1x =     6'd36,
-    fetch1x =    6'd37;
-
+    fetch1x =    6'd37,
+    stiac1 =     6'd26,
+    stiac2 =     6'd27,
+    stiac2x=     6'd42;
 
     always @(posedge clk) 
         present <= next;
@@ -186,14 +188,40 @@ module control (
             end
 
             stac1x: begin //Write DM
-                read_en <= 4'd0; //ac
-                write_en <=     16'b0000000000000000; //dm
-                inc_en <=       16'b0000000000000010;
+                read_en <= 4'd5; 
+                write_en <=     16'b0000000000000000; 
+                inc_en <=       16'b0000000000000010;//pc
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= fetch1;
             end
 
+            stiac1 : begin
+                read_en <= 4'd4; //IR
+                write_en <= 16'b0000000000000100; //AR
+                inc_en <= 16'b0000000000000000;
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= stiac2;
+            end
+
+            stiac2 : begin
+                read_en <= 4'd5; //AC
+                write_en <= 16'b0000100000000000; //DM
+                inc_en <= 16'b0000000000000000;//pc
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= stiac2x;
+            end
+
+            stiac2x : begin
+                read_en <= 4'd5; //AC
+                write_en <= 16'b0000000000000000; //DM
+                inc_en <= 16'b0000000000000010;//pc
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= fetch1;
+            end
 
             mvac1: begin
                 read_en <= 4'd5; //ac
@@ -388,27 +416,27 @@ module control (
                 next <= fetch1;
             end
 
-            jmpz1: begin
-                read_en <= 4'd0; 
-                write_en <=     16'b0000000000000000;  
-                inc_en <=       16'b0000000000000010;
-                clr_en <=       16'b0000000000000000;
-                alu_op <= 3'd0;
+            // jmpz1: begin
+            //     read_en <= 4'd0; 
+            //     write_en <=     16'b0000000000000000;  
+            //     inc_en <=       16'b0000000000000010;
+            //     clr_en <=       16'b0000000000000000;
+            //     alu_op <= 3'd0;
 
-                if (z == 0)
-                    next <= fetch1;
-                else if(z==1)
-                    next <= jmpz2;
-            end
+            //     if (z == 0)
+            //         next <= fetch1;
+            //     else if(z==1)
+            //         next <= jmpz2;
+            // end
 
-            jmpz2: begin
-                read_en <= 4'd4; //ir
-                write_en <=     16'b0000000000000010; //pc  
-                inc_en <=       16'b0000000000000000; 
-                clr_en <=       16'b0000000000000000;
-                alu_op <= 3'd0;
-                next <= fetch1;
-            end
+            // jmpz2: begin
+            //     read_en <= 4'd4; //ir
+            //     write_en <=     16'b0000000000000010; //pc  
+            //     inc_en <=       16'b0000000000000000; 
+            //     clr_en <=       16'b0000000000000000;
+            //     alu_op <= 3'd0;
+            //     next <= fetch1;
+            // end
 
              endop: begin
                 read_en <= 4'd12;

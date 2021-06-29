@@ -4,7 +4,7 @@ module top_tb;
     //timeunit 1ns;
     //timeprecision 1ps;
     reg clk = 0;
-    localparam CLK_PERIOD = 10;
+    localparam CLK_PERIOD = 100;
     initial begin
         forever #(CLK_PERIOD / 2) clk = ~clk;
     end

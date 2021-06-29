@@ -30,7 +30,6 @@ output reg[width_out-1:0] instr_out
     localparam jmpz = 5'd26;
     localparam endop = 5'd31;
     localparam clac = 5'd30;
-    localparam stiac = 5'd26;
 
     localparam operand = 12'd0;
 
@@ -67,9 +66,9 @@ output reg[width_out-1:0] instr_out
     localparam addr_l2 = 12'd66;
     localparam addr_l3 = 12'd85;
 
-    localparam stac_i = {stiac, addr_i};
-    localparam stac_j = {stiac, addr_j};
-    localparam stac_k = {stiac, addr_k};
+    localparam stac_i = {stac, addr_i};
+    localparam stac_j = {stac, addr_j};
+    localparam stac_k = {stac, addr_k};
 
     localparam ldiac_i = {ldiac, addr_i};
     localparam ldiac_j = {ldiac, addr_j};
@@ -90,7 +89,7 @@ output reg[width_out-1:0] instr_out
         ram[4 ]  = nop_addr;
         ram[5 ] = lshift_addr;
         ram[6 ] = nop_addr;
-        ram[7 ] = nop_addr;
+        ram[7 ]] = nop_addr;
         ram[8  ] = nop_addr;
         ram[9  ] = mvac_addr;
         ram[10 ] = ldiac_k;
