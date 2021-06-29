@@ -16,6 +16,7 @@ module top
     wire [11:0] ar_out;
     wire [16:0] bus_out;
     wire dm_en;
+    wire start_process = 1'd0;
 
 // ( input clk,
 // 	input [11:0] dm_out,

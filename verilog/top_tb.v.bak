@@ -14,7 +14,6 @@ module top_tb;
     wire [11:0] r3;
     wire [11:0] r4;
     wire end_process;
-	 reg start_process;
     // parameter N_reg = 12;
 
     top top(.clk(clk),.start_process(start_process),.r1(r1),.r2(r2),.r3(r3),.r4(r4),
@@ -23,7 +22,7 @@ module top_tb;
 initial begin
 
     @(posedge clk)
-    start_process <= 1;
+    start_process = 1'd1;
     
     repeat(1000) begin
         @ (posedge clk)

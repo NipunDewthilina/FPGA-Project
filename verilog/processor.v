@@ -1,6 +1,7 @@
 module processor ( input clk,
 	input [11:0] dm_out,
 	input [16:0] im_out,
+	input start_process,
 	// input [1:0] status,
 
 	output reg dm_en,
@@ -61,22 +62,22 @@ module processor ( input clk,
 // );
 
 	//register R1
-	 regr #(.N(N_bus)) regr_r1(.clk(clk), .write_en (write_en [9]),
+	 regr #(.N(N_bus)) regr_r1(.clk(clk), .write_en (write_en [10]),
 	 .datain(bus_out),.dataout(regr1_out
 	));
 
 	//register R2
-	 regr #(.N(N_bus)) regr_r2(.clk(clk), .write_en (write_en [8]),
+	 regr #(.N(N_bus)) regr_r2(.clk(clk), .write_en (write_en [9]),
 	 .datain(bus_out),.dataout(regr2_out
 	));
 
 	//register R3
-	 regr #(.N(N_bus)) regr_r3(.clk(clk), .write_en (write_en [7]),
+	 regr #(.N(N_bus)) regr_r3(.clk(clk), .write_en (write_en [8]),
 	 .datain(bus_out),.dataout(regr3_out
 	));
 
 	//register R4
-	 regr #(.N(N_bus)) regr_r4(.clk(clk), .write_en (write_en [6]),
+	 regr #(.N(N_bus)) regr_r4(.clk(clk), .write_en (write_en [7]),
 	 .datain(bus_out),.dataout(regr4_out ));
 
 	//register AR
@@ -101,8 +102,7 @@ module processor ( input clk,
 	,.clk(clk));
 
 	//register Accumilator
-	 ac #(.N(N_bus)) ac1(.clk(clk), .write_en (write_en 
-	[4]),.datain(bus_out),.dataout(ac_out),.alu_out(
+	 ac #(.N(N_bus)) ac1(.clk(clk), .write_en (write_en[4]),.datain(bus_out),.dataout(ac_out),.alu_out(
 	alu_out),.alu_to_ac (write_en [12]),.inc_en(inc_en[4]),
 	.clr_en(clr_en[4]));
 	// ( input clk,
@@ -134,12 +134,13 @@ module processor ( input clk,
 	 control control1 (.clk(clk),.z(z),.instruction 
 	(instruction),.alu_op(alu_op),.write_en (write_en ),.
 	read_en(read_en),.inc_en(inc_en),.clr_en(clr_en)
-	// .status(status)
+	,.start_process(start_process)
 	,.end_process (end_process ));
 
 	//status = 2'd1;
 	always @(posedge clk) begin
-		 dm_en <= write_en[11];
+		if (start_process == 1)
+		 	dm_en <= write_en[11];
 	end
 
 endmodule
