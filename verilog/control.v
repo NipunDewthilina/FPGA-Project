@@ -59,6 +59,7 @@ module control (
     ldiac2x =    6'd35,
     stac1x =     6'd36,
     fetch1x =    6'd37;
+    
 
     always @(negedge clk) //changed from posedge to negedge
         present <= next;
@@ -394,6 +395,16 @@ module control (
                 alu_op <= 3'd0;
                 next <= endop;
                 end
+            
+            nop1: begin
+                read_en <= 4'd0;
+                write_en <=     16'b0000000000000000 ;
+                inc_en <=       16'b0000000000000000 ;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= fetch1;
+                end
+            end
             default : begin
                 read_en <= 4'd0;
                 write_en <=     16'b0000000000000000 ;
