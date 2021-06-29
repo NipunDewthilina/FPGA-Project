@@ -62,9 +62,9 @@ output reg[width_out-1:0] instr_out
     localparam addr_2n = 12'd4090;
     localparam addr_3n = 12'd4089;
 
-    localparam addr_l1 = 12'd0;
-    localparam addr_l2 = 12'd40;
-    localparam addr_l3 = 12'd49;
+    localparam addr_l1 = 12'd2;
+    localparam addr_l2 = 12'd66;
+    localparam addr_l3 = 12'd85;
 
     localparam stac_i = {stac, addr_i};
     localparam stac_j = {stac, addr_j};
