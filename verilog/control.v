@@ -177,7 +177,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <= 6'd0;
             end
 
             mvacar: begin
@@ -186,7 +186,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             mvacr1: begin
@@ -195,7 +195,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             mvacr2: begin
@@ -204,7 +204,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             mvacr3: begin
@@ -213,7 +213,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <=  6'd0;
             end
                 
             mvacr4: begin
@@ -222,7 +222,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             mvr1ac: begin
@@ -231,7 +231,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             mvr2ac: begin
@@ -240,7 +240,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             mvr3ac: begin
@@ -249,7 +249,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             mvr4ac: begin
@@ -258,7 +258,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             add1: begin
@@ -267,7 +267,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <=       3'd1; //add
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             // add1x: begin
@@ -285,7 +285,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd2; //sub
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             // sub1x: begin
@@ -303,7 +303,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd3; //mult
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             // mult1x: begin
@@ -321,7 +321,7 @@ module control (
                 inc_en <=       16'b0000000000000000;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd4; //lshift
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             // lshift1x: begin
@@ -339,7 +339,7 @@ module control (
                 inc_en <=       16'b0000000000010000;//ac increment
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
-                next <= fetch1;
+                next <=  6'd0;
             end
 
             jpnz1: begin
