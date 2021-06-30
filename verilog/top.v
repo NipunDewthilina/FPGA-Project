@@ -58,7 +58,11 @@ module top
     wire [11:0] ar_out4;
     wire [16:0] bus_out4;
     wire dm_en4;
-
+	
+	 wire [16:0] c1;
+	 wire [16:0] c2;
+	 wire [16:0] c3;
+	 wire [16:0] c4;
 // ( input clk,
 // 	input [11:0] dm_out,
 // 	input [16:0] im_out,
@@ -69,25 +73,25 @@ module top
 // 	output end_process);
 
     processor core1 (
-    .clk(clk),.dm_out(dm_out1),.im_out(im_out),
+    .clk(clk),.dm_out(dm_out1),.im_out(c1),
     .dm_en(dm_en1),.pc_out(pc_out1),.ar_out(ar_out1),.bus_out(bus_out1),
     .end_process(end_process1),.start_process(start_process)
     );
 
     processor core2 (
-    .clk(clk),.dm_out(dm_out2),.im_out(im_out),
+    .clk(clk),.dm_out(dm_out2),.im_out(c2),
     .dm_en(dm_en2),.pc_out(pc_out2),.ar_out(ar_out2),.bus_out(bus_out2),
     .end_process(end_process2),.start_process(start_process)
     );
 
     processor core3 (
-    .clk(clk),.dm_out(dm_out3),.im_out(im_out),
+    .clk(clk),.dm_out(dm_out3),.im_out(c3),
     .dm_en(dm_en3),.pc_out(pc_out3),.ar_out(ar_out3),.bus_out(bus_out3),
     .end_process(end_process3),.start_process(start_process)
     );
 
     processor core4 (
-    .clk(clk),.dm_out(dm_out4),.im_out(im_out),
+    .clk(clk),.dm_out(dm_out4),.im_out(c4),
     .dm_en(dm_en4),.pc_out(pc_out4),.ar_out(ar_out4),.bus_out(bus_out4),
     .end_process(end_process4),.start_process(start_process)
     );
@@ -138,6 +142,8 @@ module top
     (
         .clk(clk),.addr1(pc_out1),.addr2(pc_out2),.addr3(pc_out3),.addr4(pc_out4),.instr_out(im_out)
     );
+
+    im_core_select ics (.ins_in(im_out),.core1(c1),.core2(c2),.core3(c3),.core4(c4),.clk(clk));
 
 
 endmodule

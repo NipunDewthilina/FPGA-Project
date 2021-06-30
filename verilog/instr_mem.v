@@ -60,6 +60,8 @@ output reg[width_out-1:0] instr_out
     localparam addr_i = 12'd4094;
     localparam addr_j = 12'd4093;
     localparam addr_k = 12'd4092;
+    localparam addr_k_2n = 12'd4087;
+    localparam addr_j_n = 12'd4088;
 
     localparam addr_n = 12'd4091;
     localparam addr_2n = 12'd4090;
@@ -79,6 +81,8 @@ output reg[width_out-1:0] instr_out
     localparam ldiac_n = {ldiac, addr_n};
     localparam ldiac_2n = {ldiac, addr_2n};
     localparam ldiac_3n = {ldiac, addr_3n};
+    localparam ldiac_k_2n = {ldiac, addr_k_2n};
+    localparam ldiac_j_n = {ldiac, addr_j_n};
 
     localparam jpnz_l1 = {jpnz, addr_l1};
     localparam jpnz_l2 = {jpnz, addr_l2};
@@ -153,7 +157,7 @@ output reg[width_out-1:0] instr_out
         ram[ 65] = mvacr1_addr;
         ram[ 66]  = nop_addr;
         ram[ 67]  = nop_addr;
-        ram[ 68] = ldiac_2n;
+        ram[ 68] = ldiac_k_2n;
         ram[ 69] = stac_k;
         ram[ 70]  = nop_addr;
         ram[ 71]  = nop_addr;
@@ -170,7 +174,7 @@ output reg[width_out-1:0] instr_out
         ram[ 82]  = nop_addr;
         ram[ 83] = sub_addr;
         ram[ 84] = jpnz_l1;
-        ram[ 85] = ldiac_n;
+        ram[ 85] = ldiac_j_n;
         ram[ 86]  = nop_addr;
         ram[ 87]  = nop_addr;
         ram[ 88] = stac_j;

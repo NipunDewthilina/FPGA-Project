@@ -50,6 +50,8 @@ module datamemory #(
           ram1[start_bit-3] = 12'd2;//n/2 = 2 
           ram1[start_bit-4] = 12'd6;//2n-n/2 = 6
           ram1[start_bit-5] = 12'd12;//3n = 6 //3n = 12
+		  ram1[start_bit-6] = 12'd4;
+		  ram1[start_bit-7] = 12'd8;
         
         //core2 - 11
           ram2[start_bit] =   12'd2;//i
@@ -58,6 +60,9 @@ module datamemory #(
           ram2[start_bit-3] = 12'd4;//n = 4 
           ram2[start_bit-4] = 12'd8;//2n = 8
           ram2[start_bit-5] = 12'd12;//3n = 6 //3n = 12
+		  ram2[start_bit-6] = 12'd6;
+		  ram2[start_bit-7] = 12'd8;
+
 
         //core3 - 10
           ram3[start_bit] =   12'd2;//i
@@ -66,6 +71,8 @@ module datamemory #(
           ram3[start_bit-3] = 12'd4;//n = 4 
           ram3[start_bit-4] = 12'd6;//2n-n/2 = 6
           ram3[start_bit-5] = 12'd12;//3n = 6 //3n = 12
+		  ram3[start_bit-6] = 12'd4;
+		  ram3[start_bit-7] = 12'd8;
 
         //core4 - 01
           ram4[start_bit] =   12'd0;//i
@@ -74,6 +81,8 @@ module datamemory #(
           ram4[start_bit-3] = 12'd2;//n/2 = 2 
           ram4[start_bit-4] = 12'd8;//2n = 8
           ram4[start_bit-5] = 12'd12;//3n = 6 //3n = 12
+		  ram4[start_bit-6] = 12'd6;
+		  ram4[start_bit-7] = 12'd8;
 
         //2x2 matrix
 //        ram[4] =  12'd1;
@@ -224,20 +233,20 @@ module datamemory #(
     always @(posedge clk) begin
         r1 <=  ram1 [4  ]; 
         r2 <=  ram1 [5  ];
-        r3 <=  ram1 [6  ];
-        r4 <=  ram1 [7  ];
+        r3 <=  ram4 [6  ];
+        r4 <=  ram4 [7  ];
 		r5 <=  ram1 [68 ]; 
         r6 <=  ram1 [69 ];
-        r7 <=  ram1 [70 ];
-        r8 <=  ram1 [71 ];
-		r9 <=  ram1 [132]; 
-        r10 <= ram1 [133];
-        r11 <= ram1 [134];
-        r12 <= ram1 [135];
-		r13 <= ram1 [196]; 
-        r14 <= ram1 [197];
-        r15 <= ram1 [198];
-        r16 <= ram1 [199];
+        r7 <=  ram4 [70 ];
+        r8 <=  ram4 [71 ];
+		r9 <=  ram3 [132]; 
+        r10 <= ram3 [133];
+        r11 <= ram2 [134];
+        r12 <= ram2 [135];
+		r13 <= ram3 [196]; 
+        r14 <= ram3 [197];
+        r15 <= ram2 [198];
+        r16 <= ram2 [199];
         if (write_en_1 == 1)
             ram1[addr1] <= datain1[11:0];
         if (write_en_2 == 1)
