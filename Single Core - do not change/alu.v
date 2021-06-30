@@ -1,7 +1,7 @@
 module alu 
 #(
-    parameter N,
-    parameter width_of_i
+    parameter N=12,
+    parameter width_of_i=6
 ) (
     input clk,
     input [N-1:0] in1,

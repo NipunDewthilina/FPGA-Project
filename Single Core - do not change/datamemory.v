@@ -1,6 +1,6 @@
 //Remember : all the inputs from bus are 17 bits, outputs to the bus is 12 bits.
 module datamemory #(
-    parameter N
+    parameter N=17
 ) (
 	input clk,
     input write_en,

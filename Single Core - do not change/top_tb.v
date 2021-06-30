@@ -4,7 +4,7 @@ module top_tb;
     //timeunit 1ns;
     //timeprecision 1ps;
     reg clk = 0;
-    localparam CLK_PERIOD = 100;
+    localparam CLK_PERIOD = 10;
     initial begin
         forever #(CLK_PERIOD / 2) clk = ~clk;
     end
@@ -40,7 +40,7 @@ initial begin
     @(posedge clk)
     start_process <= 1;
     
-    repeat(1000) begin
+    repeat(10000) begin
         @ (posedge clk)
         if (end_process ==1) begin
          #(CLK_PERIOD*3);
@@ -50,6 +50,7 @@ initial begin
             $display(r3);
             $display(r4);
             $display("hi1");
+            $stop;
         end
     end
     //	end

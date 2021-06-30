@@ -1,4 +1,4 @@
-module instr_mem #(parameter width_in,parameter width_out)(input clk,
+module instr_mem #(parameter width_in=12,parameter width_out=17)(input clk,
 // input read_en,
 input [width_in-1:0] addr,
 // input [width_in-1:0] instr_in,

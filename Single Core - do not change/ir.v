@@ -1,7 +1,7 @@
 //registers with increment
 
 module ir #(
-    parameter N
+    parameter N=17
 ) (
     input clk,
     input write_en,

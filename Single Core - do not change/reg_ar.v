@@ -1,7 +1,7 @@
 //registers without increment
 
 module reg_ar #(
-    parameter N) (
+    parameter N=17) (
     input clk,
     input write_en,
     input clr_en,

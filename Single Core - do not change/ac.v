@@ -1,5 +1,5 @@
 module ac #(
-    parameter N) 
+    parameter N=17) 
     ( input clk,
     input write_en,
     input [N-1:0] datain,//from the bus

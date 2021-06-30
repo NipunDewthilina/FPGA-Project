@@ -1,4 +1,4 @@
-module bus #(parameter N)( input clk,
+module bus #(parameter N=17)( input clk,
 input [3:0] read_en,
 input [11:0] r1,
 input [11:0] r2,
