@@ -25,7 +25,10 @@ module top_tb;
     wire [11:0] r14;
     wire [11:0] r15;
     wire [11:0] r16;
-    wire end_process;
+    wire end_process1;
+    wire end_process2;
+    wire end_process3;
+    wire end_process4;
 	 reg start_process;
     // parameter N_reg = 12;
 
@@ -33,16 +36,16 @@ module top_tb;
 	 ,.r5(r5),.r6(r6),.r7(r7),.r8(r8)
 	 ,.r9(r9),.r10(r10),.r11(r11),.r12(r12)
 	 ,.r13(r13),.r14(r14),.r15(r15),.r16(r16),
-    .end_process(end_process));//later initiate this
+    .end_process1(end_process1),.end_process2(end_process2),.end_process3(end_process3),.end_process4(end_process4));//later initiate this
 	
 initial begin
 
     @(posedge clk)
     start_process <= 1;
     
-    repeat(1000) begin
+    repeat(100000) begin
         @ (posedge clk)
-        if (end_process ==1) begin
+        if (end_process1 ==1) begin
          #(CLK_PERIOD*3);
             $display("hi");
             $display(r1);
@@ -50,6 +53,7 @@ initial begin
             $display(r3);
             $display(r4);
             $display("hi1");
+            $stop;
         end
     end
     //	end

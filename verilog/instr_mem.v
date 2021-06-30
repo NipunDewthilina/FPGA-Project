@@ -1,7 +1,9 @@
 module instr_mem #(parameter width_in,parameter width_out)(input clk,
 // input read_en,
-input [width_in-1:0] addr,
-// input [width_in-1:0] instr_in,
+input [width_in-1:0] addr1,
+input [width_in-1:0] addr2,// not used
+input [width_in-1:0] addr3,// not used
+input [width_in-1:0] addr4,// not used
 output reg[width_out-1:0] instr_out
 );
 
@@ -196,7 +198,8 @@ output reg[width_out-1:0] instr_out
 
     always @(posedge clk) begin
         // if (read_en == 1)
-            instr_out <= ram[addr];
+            instr_out <= ram[addr1];
+
     end
 
 endmodule
