@@ -13,15 +13,15 @@ module top_tb;
     wire [11:0] r2;
     wire [11:0] r3;
     wire [11:0] r4;
-	 wire [11:0] r5;
+	wire [11:0] r5;
     wire [11:0] r6;
     wire [11:0] r7;
     wire [11:0] r8;
-	 wire [11:0] r9;
+	wire [11:0] r9;
     wire [11:0] r10;
     wire [11:0] r11;
     wire [11:0] r12;
-	 wire [11:0] r13;
+	wire [11:0] r13;
     wire [11:0] r14;
     wire [11:0] r15;
     wire [11:0] r16;
@@ -29,7 +29,7 @@ module top_tb;
     wire end_process2;
     wire end_process3;
     wire end_process4;
-	 reg start_process;
+	reg start_process;
     // parameter N_reg = 12;
 
     top top(.clk(clk),.start_process(start_process),.r1(r1),.r2(r2),.r3(r3),.r4(r4)
