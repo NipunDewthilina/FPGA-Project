@@ -85,6 +85,8 @@ ADD					;AC<=AC+R  //memory location now created
 MOVACAR			;AR<=AC; AR= AC= i,j
 MOVR1AC			;AC<=R1
 STAC 			;M[i,j]<=AC	
+CLAC
+MOVACR1
 LDIAC two_n		;AC<= two_n ;AC= 2n
 MOVACR4             ;R4<=AC
 0'd2			//to select the location of k ;AC<=0'd2
@@ -118,7 +120,7 @@ mainloop3:	LDAC i		;AC<=i
 	MOVAC		;R<=AC	
 	LDIAC n		;AC<=n	
 	SUB		    ;AC<=AC-R; if AC-R = 0, Z = 1 ;else, Z = 0;	AC = AC-R;
-	JPNZ mainloop2		;if Z =0, JUMP to loop2	
+	JPNZ mainloop1		;if Z =0, JUMP to loop1
 ENDOP	
 
 //Here I save i,j,k after every increment in the Data Memory to make the access for j to different cores
