@@ -1,13 +1,12 @@
 //Remember : all the inputs from bus are 17 bits, outputs to the bus is 12 bits.
-`timescale 1 ps / 1 ps
+`timescale 1 ns / 1 ps
 module datamemory #(
     parameter N=17
 ) (
 		input clk,
-		input start_writing,
 		input write_en,
-		input addr,
-		input datain,
+		input [11:0] addr,
+		input [16:0] datain,
 		output reg [11:0] r1,
 		output reg [11:0] r2,
 		output reg [11:0] r3,
@@ -32,16 +31,12 @@ module datamemory #(
     localparam start_bit = 4094;
 	integer i;
     initial begin
-        #10
-		  if (start_writing == 1) begin
-				$readmemb("D:\\Educational stuff\\PROJECTS\\FPGA-Project\\input and output python and other files\\python_matrix\\mat44.txt", ram);
-				@(posedge clk)
-				start_writing<=0;
-				end
-        #10
-        for(i=0;i<4096;i=i+1) begin
-            $display("%b", ram[i]);
-        end
+        #10;
+		  $readmemb("D:\\Educational stuff\\PROJECTS\\FPGA-Project\\mat445.txt", ram);
+		  #10;
+//        for(i=0;i<4096;i=i+1) begin
+//            $display("%b", ram[i]);
+//        end
     end
 
     always @(posedge clk) begin
@@ -61,7 +56,7 @@ module datamemory #(
         r14 <= ram[197];
         r15 <= ram[198];
         r16 <= ram[199];
-		  if (start_writing == 0) 
+		  
 		  start_process <= 1;
 		  
         if (write_en == 1)

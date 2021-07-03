@@ -1,7 +1,6 @@
 module top
 (
     input clk,
-    input start_process,
     output wire [11:0] r1,
     output wire [11:0] r2,
     output wire [11:0] r3,
@@ -28,6 +27,7 @@ module top
     wire [11:0] ar_out;
     wire [16:0] bus_out;
     wire dm_en;
+    wire start_process;
 
 // ( input clk,
 // 	input [11:0] dm_out,
@@ -49,7 +49,7 @@ module top
 	 .clk(clk),.write_en(dm_en),.addr(ar_out),.datain(bus_out),
     .dataout(dm_out),.r1(r1),.r2(r2),.r3(r3),.r4(r4)
 	 ,.r5(r5),.r6(r6),.r7(r7),.r8(r8),.r9(r9),.r10(r10),.r11(r11),.r12(r12)
-	 ,.r13(r13),.r14(r14),.r15(r15),.r16(r16)
+	 ,.r13(r13),.r14(r14),.r15(r15),.r16(r16),.start_process(start_process)
     );
 
     instr_mem #(.width_in(12),.width_out(17)) im
