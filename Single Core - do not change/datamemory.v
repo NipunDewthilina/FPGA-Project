@@ -4,11 +4,11 @@ module datamemory #(
 ) (
 	input clk,
     input write_en,
-    input receive_en,
+    //input receive_en,
     input [11:0] addr, //[N-1:0]
     input [N-1:0] datain,
-    input [11: 0] addr_input,
-    input [N-1: 0] data_input,
+    //input [11: 0] addr_input,
+    //input [N-1: 0] data_input,
     output reg [11:0] dataout, //[N-1:0]
     output reg [11:0] r1,
     output reg [11:0] r2,
@@ -30,8 +30,12 @@ module datamemory #(
     
     reg [11:0] ram [4095:0] ; //[N-1:0] [4095:0]
     localparam start_bit = 4094;
-    //initial begin
+	 
+	 
+    initial begin
         
+		  $readmemb("C:/Users/AkeshalaMarasinghe/Desktop/fpga/june3/mat44.data", ram);
+		  
         // ram[start_bit] = 12'd0;//i
         // ram[start_bit-1] = 12'd4;//j
         // ram[start_bit-2] = 12'd8;//k
@@ -83,7 +87,7 @@ module datamemory #(
 		  
 		  
 		  
-    //end
+    end
 // 2]
 // 3]
 // 66
@@ -105,8 +109,8 @@ module datamemory #(
         r14 <= ram[197];
         r15 <= ram[198];
         r16 <= ram[199];
-        if (receive_en == 1)
-            ram[addr_input] <= data_input;
+        //if (receive_en == 1)
+          //  ram[addr_input] <= data_input;
         if (write_en == 1)
             ram[addr] <= datain[11:0];
         else begin
