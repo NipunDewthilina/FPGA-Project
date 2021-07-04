@@ -1,7 +1,6 @@
 module top
 (
     input clk,
-    input start_process,
     output wire [11:0] r1,
     output wire [11:0] r2,
     output wire [11:0] r3,
@@ -63,6 +62,8 @@ module top
 	 wire [16:0] c2;
 	 wire [16:0] c3;
 	 wire [16:0] c4;
+
+     wire start_process;
 // ( input clk,
 // 	input [11:0] dm_out,
 // 	input [16:0] im_out,
@@ -103,7 +104,7 @@ module top
     .dataout1(dm_out1),.dataout2(dm_out2),.dataout3(dm_out3),.dataout4(dm_out4),
     .r1(r1),.r2(r2),.r3(r3),.r4(r4)
 	 ,.r5(r5),.r6(r6),.r7(r7),.r8(r8),.r9(r9),.r10(r10),.r11(r11),.r12(r12)
-	 ,.r13(r13),.r14(r14),.r15(r15),.r16(r16)
+	 ,.r13(r13),.r14(r14),.r15(r15),.r16(r16),.start_process(start_process)
     );
 //     (
 // 	input clk,
