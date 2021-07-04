@@ -8,6 +8,7 @@ module datamemory #(
     input write_en_2,
     input write_en_3,
     input write_en_4,
+	input [11:0] addr_tb,
     input [11:0] addr1, //[N-1:0]
     input [11:0] addr2, //[N-1:0]
     input [11:0] addr3, //[N-1:0]
@@ -20,23 +21,8 @@ module datamemory #(
     output reg [11:0] dataout2, //[N-1:0]
     output reg [11:0] dataout3, //[N-1:0]
     output reg [11:0] dataout4, //[N-1:0]
-    output reg [11:0] r1,
-    output reg [11:0] r2,
-    output reg [11:0] r3,
-    output reg [11:0] r4,
-	output reg [11:0] r5,
-    output reg [11:0] r6,
-    output reg [11:0] r7,
-    output reg [11:0] r8,
-	output reg [11:0] r9,
-    output reg [11:0] r10,
-    output reg [11:0] r11,
-    output reg [11:0] r12,
-	output reg [11:0] r13,
-    output reg [11:0] r14,
-    output reg [11:0] r15,
-    output reg [11:0] r16,
-	output reg start_process
+    output reg [11:0] result,
+    output reg start_process
 );
     
     reg [11:0] ram1 [4095:0] ; //[N-1:0] [4095:0]
@@ -240,22 +226,7 @@ module datamemory #(
 // 66
 // 67
     always @(posedge clk) begin
-        r1 <=  ram1 [4  ]; 
-        r2 <=  ram1 [5  ];
-        r3 <=  ram4 [6  ];
-        r4 <=  ram4 [7  ];
-		r5 <=  ram1 [68 ]; 
-        r6 <=  ram1 [69 ];
-        r7 <=  ram4 [70 ];
-        r8 <=  ram4 [71 ];
-		r9 <=  ram3 [132]; 
-        r10 <= ram3 [133];
-        r11 <= ram2 [134];
-        r12 <= ram2 [135];
-		r13 <= ram3 [196]; 
-        r14 <= ram3 [197];
-        r15 <= ram2 [198];
-        r16 <= ram2 [199];
+        result <= ram1[addr_tb] | ram2[addr_tb] | ram3[addr_tb] | ram4[addr_tb];
 		start_process <=  1;
         if (write_en_1 == 1)
             ram1[addr1] <= datain1[11:0];

@@ -4,58 +4,48 @@ module top_tb;
     //timeunit 1ns;
     //timeprecision 1ps;
     reg clk = 0;
-    localparam CLK_PERIOD = 100;
+    localparam CLK_PERIOD = 10;
     initial begin
         forever #(CLK_PERIOD / 2) clk = ~clk;
     end
 
-    wire [11:0] r1;
-    wire [11:0] r2;
-    wire [11:0] r3;
-    wire [11:0] r4;
-	wire [11:0] r5;
-    wire [11:0] r6;
-    wire [11:0] r7;
-    wire [11:0] r8;
-	wire [11:0] r9;
-    wire [11:0] r10;
-    wire [11:0] r11;
-    wire [11:0] r12;
-	wire [11:0] r13;
-    wire [11:0] r14;
-    wire [11:0] r15;
-    wire [11:0] r16;
+    reg slow_clk = 0;
+    initial begin
+        forever #(100 / 2) slow_clk = ~slow_clk;
+    end
+
+    wire[11:0] result;
+    reg [11:0] addr_tb;
     wire end_process1;
     wire end_process2;
     wire end_process3;
     wire end_process4;
 	// reg start_process;
     // parameter N_reg = 12;
-
-    top top(.clk(clk),.r1(r1),.r2(r2),.r3(r3),.r4(r4)
-	 ,.r5(r5),.r6(r6),.r7(r7),.r8(r8)
-	 ,.r9(r9),.r10(r10),.r11(r11),.r12(r12)
-	 ,.r13(r13),.r14(r14),.r15(r15),.r16(r16),
-    .end_process1(end_process1),.end_process2(end_process2),.end_process3(end_process3),.end_process4(end_process4));//later initiate this
-	
-initial begin
-    
-    repeat(100000) begin
-        @ (posedge clk)
-        if (end_process1 ==1) begin
-         #(CLK_PERIOD*3);
-            $display("hi");
-            $display(r1);
-            $display(r2);
-            $display(r3);
-            $display(r4);
-            $display("hi1");
-            $stop;
-        end
+    reg [11:0] addr_mem [63:0];
+    integer i = 0;
+    initial begin
+        #10;
+        $readmemb("D:\\Educational stuff\\PROJECTS\\FPGA-Project\\addr_mem.txt", addr_mem);
+        #10;
     end
-    //	end
-end
+
+    top top(.clk(clk),.addr_tb(addr_tb),.result(result),
+    .end_process1(end_process1),.end_process2(end_process2),.end_process3(end_process3),.end_process4(end_process4));//later initiate this
 	 
+
+initial begin
+    repeat(100000) begin
+        @ (posedge clk) 
+        if (end_process1 && end_process2 && end_process3 && end_process4) begin
+            addr_tb <= addr_mem[i];
+				i <= i+1;
+				if (i == 64) $stop;
+		end
+		#(CLK_PERIOD*4);
+    end
+end
+
 endmodule
 
 

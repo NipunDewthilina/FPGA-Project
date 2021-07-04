@@ -66,7 +66,7 @@ for i in range(ii, jj):
 
         decimal_loc = int(twelveloc, 2)
 
-        print(decimal_loc, a[i][k % N])
+        # print(decimal_loc, a[i][k % N])
         mem1[decimal_loc] = a[i][k % N]
         mem2[decimal_loc] = a[i][k % N]
         mem3[decimal_loc] = a[i][k % N]
@@ -86,7 +86,7 @@ for k in range(kk, 3 * N):
 
         decimal_loc = int(twelveloc, 2)
 
-        print(decimal_loc, b[k % N][j % N])
+        # print(decimal_loc, b[k % N][j % N])
         mem1[decimal_loc] = b[k % N][j % N]
         mem2[decimal_loc] = b[k % N][j % N]
         mem3[decimal_loc] = b[k % N][j % N]
@@ -120,6 +120,35 @@ with open('mat_core3.txt', 'w') as file:
 
 with open('mat_core4.txt', 'w') as file:
     for i in mem4:
+        i_s = str(bin(int(i)))[2:]
+        zeros = "0" * (12-len(str(i_s)))
+        file.write(zeros+str(i_s)+'\n')
+        # print(i)
+        # print(str(i)+'\n')
+
+#result indices finding
+addr_mem = [0]*64
+addr_i = 0;
+for i in range(ii, jj):
+    for j in range(jj, 2 * N):
+
+        loc1 = bin(i)[2:]
+        sixloc1 = (6 - len(loc1)) * '0' + loc1
+
+        loc2 = bin(j)[2:]
+        sixloc2 = (6 - len(loc2)) * '0' + loc2
+
+        twelveloc = sixloc1 + sixloc2
+
+        decimal_loc = int(twelveloc, 2)
+
+        print(decimal_loc)
+        addr_mem[addr_i] = decimal_loc
+        addr_i += 1
+print(addr_mem)
+
+with open('addr_mem.txt', 'w') as file:
+    for i in addr_mem:
         i_s = str(bin(int(i)))[2:]
         zeros = "0" * (12-len(str(i_s)))
         file.write(zeros+str(i_s)+'\n')

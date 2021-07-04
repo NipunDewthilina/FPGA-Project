@@ -1,26 +1,12 @@
 module top
 (
     input clk,
-    output wire [11:0] r1,
-    output wire [11:0] r2,
-    output wire [11:0] r3,
-    output wire [11:0] r4,
-	 output wire [11:0] r5,
-    output wire [11:0] r6,
-    output wire [11:0] r7,
-    output wire [11:0] r8,
-	 output wire [11:0] r9,
-    output wire [11:0] r10,
-    output wire [11:0] r11,
-    output wire [11:0] r12,
-	 output wire [11:0] r13,
-    output wire [11:0] r14,
-    output wire [11:0] r15,
-    output wire [11:0] r16,
+	 input [11:0] addr_tb,
     output wire end_process1,
     output wire end_process2,
     output wire end_process3,
-    output wire end_process4
+    output wire end_process4,
+    output wire [11:0] result
 );
     wire [11:0] dm_out1;
     wire [16:0] im_out;
@@ -98,13 +84,11 @@ module top
     );
     
     datamemory #(.N(17)) dm                                     
-    (.clk(clk),.write_en_1(dm_en1),.write_en_2(dm_en2),.write_en_3(dm_en3),.write_en_4(dm_en4)
+    (.clk(clk),.write_en_1(dm_en1),.write_en_2(dm_en2),.write_en_3(dm_en3),.write_en_4(dm_en4),.addr_tb(addr_tb)
     ,.addr1(ar_out1),.addr2(ar_out2),.addr3(ar_out3),.addr4(ar_out4),
     .datain1(bus_out1),.datain2(bus_out2),.datain3(bus_out3),.datain4(bus_out4),
-    .dataout1(dm_out1),.dataout2(dm_out2),.dataout3(dm_out3),.dataout4(dm_out4),
-    .r1(r1),.r2(r2),.r3(r3),.r4(r4)
-	 ,.r5(r5),.r6(r6),.r7(r7),.r8(r8),.r9(r9),.r10(r10),.r11(r11),.r12(r12)
-	 ,.r13(r13),.r14(r14),.r15(r15),.r16(r16),.start_process(start_process)
+    .dataout1(dm_out1),.dataout2(dm_out2),.dataout3(dm_out3),.dataout4(dm_out4),.result(result),
+    .start_process(start_process)
     );
 //     (
 // 	input clk,
