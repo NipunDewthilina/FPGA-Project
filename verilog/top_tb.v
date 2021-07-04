@@ -22,7 +22,7 @@ module top_tb;
     wire end_process4;
 	// reg start_process;
     // parameter N_reg = 12;
-    reg [11:0] addr_mem [63:0];
+    reg [11:0] addr_mem [511:0];
     integer i = 0;
     integer file_id;
     initial begin

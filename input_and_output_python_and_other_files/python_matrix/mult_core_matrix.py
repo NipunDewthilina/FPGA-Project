@@ -1,9 +1,30 @@
-N = 4 #2
+# N = 4 #2
 # a = [[1, 2], [3, 4]]
 # b = [[5, 6], [7, 8]]
 
-a = [[1, 2, 1, 2], [1, 2, 1, 2], [1, 2, 1, 2], [3, 2, 1, 0]]
-b = [[1, 2, 1, 2], [1, 2, 1, 2], [1, 2, 1, 2], [3, 2, 1, 0]]
+#Matrix 1 input
+N = int(input("Enter the number of rows in square matrix:"))
+  
+# Initialize matrix
+a = []
+print("Enter the entries rowwise of matrix 1:")
+
+for i in range(N):          # A for loop for row entries
+    row1 = input().split(" ")
+    row1 = map(int,row1)
+    a.append(row1)
+
+#Matrix 2 input
+b = []
+print("Enter the entries rowwise of matrix 2:")
+
+for i in range(N):          # B for loop for row entries
+    row2 = input().split(" ")
+    row2 = map(int,row2)
+    a.append(row1)
+
+# a = [[1, 2, 1, 2], [1, 2, 1, 2], [1, 2, 1, 2], [3, 2, 1, 0]]
+# b = [[1, 2, 1, 2], [1, 2, 1, 2], [1, 2, 1, 2], [3, 2, 1, 0]]
 
 mem1 = [0] * 4096
 mem2 = [0] * 4096
@@ -127,7 +148,7 @@ with open('mat_core4.txt', 'w') as file:
         # print(str(i)+'\n')
 
 #result indices finding
-addr_mem = [0]*64
+addr_mem = [0]*512
 addr_i = 0;
 for i in range(ii, jj):
     for j in range(jj, 2 * N):
