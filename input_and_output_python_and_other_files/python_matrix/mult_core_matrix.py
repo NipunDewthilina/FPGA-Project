@@ -11,7 +11,7 @@ print("Enter the entries rowwise of matrix 1:")
 
 for i in range(N):          # A for loop for row entries
     row1 = input().split(" ")
-    row1 = map(int,row1)
+    row1 = list(map(int,row1))
     a.append(row1)
 
 #Matrix 2 input
@@ -20,8 +20,8 @@ print("Enter the entries rowwise of matrix 2:")
 
 for i in range(N):          # B for loop for row entries
     row2 = input().split(" ")
-    row2 = map(int,row2)
-    a.append(row1)
+    row2 = list(map(int,row2))
+    b.append(row1)
 
 # a = [[1, 2, 1, 2], [1, 2, 1, 2], [1, 2, 1, 2], [3, 2, 1, 0]]
 # b = [[1, 2, 1, 2], [1, 2, 1, 2], [1, 2, 1, 2], [3, 2, 1, 0]]
@@ -175,3 +175,18 @@ with open('addr_mem.txt', 'w') as file:
         file.write(zeros+str(i_s)+'\n')
         # print(i)
         # print(str(i)+'\n')
+
+resultant = []
+
+for i in range(N):
+    row = []
+    for j in range(N):
+        row.append(0)
+    resultant.append(row)
+        
+for i in range(N):
+    for j in range(int(N)):
+        for k in range(int(N)) :
+            resultant[i][j] += a[i][k] * b[k][j] 
+
+print(resultant)
