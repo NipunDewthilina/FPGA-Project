@@ -49,8 +49,6 @@ module control (
     inac1 =      6'd23,
     jpnz1 =      6'd24,
     jpnz2 =      6'd25,
-    // jmpz1 =      6'd26,//notused
-    // jmpz2 =      6'd27,//notused
     nop1 =       6'd28,
     clac1 =      6'd30,
     endop =      6'd31,
@@ -62,7 +60,23 @@ module control (
     fetch1x =    6'd37,
     stiac1 =     6'd26,
     stiac2 =     6'd27,
-    stiac2x=     6'd42;
+    stiac2x=     6'd42,
+    lshift_1=    6'd44,
+    lshift_1x=   6'd56,
+    rshift_1=    6'd45,
+    rshift_1x=   6'd57,
+    stiac_rm1=   6'd46,
+    stiac_rm1x=  6'd47,
+    stiac_rm1y=  6'd48,
+    stiac_rm2=   6'd49,
+    stiac_rm2x=  6'd50,
+    stiac_rm2y=  6'd51,
+    stiac_rm3=   6'd52,
+    stiac_rm3x=  6'd53,
+    stiac_rm3y=  6'd54,
+    stiac_rm4=   6'd55,
+    stiac_rm4x=  6'd58,
+    stiac_rm4y=  6'd59;
 
     always @(posedge clk) 
         present <= next;
@@ -208,7 +222,7 @@ module control (
             stiac2 : begin
                 read_en <= 4'd5; //AC
                 write_en <= 16'b0000100000000000; //DM
-                inc_en <= 16'b0000000000000000;//pc
+                inc_en <= 16'b0000000000000000;
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd0;
                 next <= stiac2x;
@@ -216,7 +230,115 @@ module control (
 
             stiac2x : begin
                 read_en <= 4'd5; //AC
-                write_en <= 16'b0000000000000000; //DM
+                write_en <= 16'b0000000000000000; 
+                inc_en <= 16'b0000000000000010;//pc
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= fetch1;
+            end
+
+            stiac_rm1 : begin
+                read_en <= 4'd4; //IR
+                write_en <= 16'b0000000000000100; //AR
+                inc_en <= 16'b0000000000000000;//pc
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= stiac_rm1x;
+            end
+
+            stiac_rm1x : begin
+                read_en <= 4'd5; //AC
+                write_en <= 16'b0000000000000001; //DM-Rm1 index 0
+                inc_en <= 16'b0000000000000000;
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= stiac_rm1y;
+            end
+
+            stiac_rm1y : begin
+                read_en <= 4'd5; //AC
+                write_en <= 16'b0000000000000000; 
+                inc_en <= 16'b0000000000000010;//pc
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= fetch1;
+            end
+
+            stiac_rm2 : begin
+                read_en <= 4'd4; //IR
+                write_en <= 16'b0000000000000100; //AR
+                inc_en <= 16'b0000000000000000;//pc
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= stiac_rm2x;
+            end
+
+            stiac_rm2x : begin
+                read_en <= 4'd5; //AC
+                write_en <= 16'b1000000000000000; //DM-Rm2 index 15
+                inc_en <= 16'b0000000000000000;
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= stiac_rm2y;
+            end
+
+            stiac_rm2y : begin
+                read_en <= 4'd5; //AC
+                write_en <= 16'b0000000000000000; 
+                inc_en <= 16'b0000000000000010;//pc
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= fetch1;
+            end
+
+            stiac_rm3 : begin
+                read_en <= 4'd4; //IR
+                write_en <= 16'b0000000000000100; //AR
+                inc_en <= 16'b0000000000000000;//pc
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= stiac_rm3x;
+            end
+
+            stiac_rm3x : begin
+                read_en <= 4'd5; //AC
+                write_en <= 16'b0100000000000000; //DM-Rm3 index 14
+                inc_en <= 16'b0000000000000000;
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= stiac_rm3y;
+            end
+
+            stiac_rm3y : begin
+                read_en <= 4'd5; //AC
+                write_en <= 16'b0000000000000000; 
+                inc_en <= 16'b0000000000000010;//pc
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= fetch1;
+            end
+
+            stiac_rm4 : begin
+                read_en <= 4'd4; //IR
+                write_en <= 16'b0000000000000100; //AR
+                inc_en <= 16'b0000000000000000;//pc
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= stiac_rm4x;
+            end
+
+            stiac_rm4x : begin
+                read_en <= 4'd5; //AC
+                write_en <= 16'b0010000000000000; //DM-Rm4 index 13
+                inc_en <= 16'b0000000000000000;
+                clr_en <= 16'b0000000000000000;
+                alu_op <= 3'd0;
+                next <= stiac_rm4y;
+            end
+
+            stiac_rm4y : begin
+                read_en <= 4'd5; //AC
+                write_en <= 16'b0000000000000000; 
                 inc_en <= 16'b0000000000000010;//pc
                 clr_en <= 16'b0000000000000000;
                 alu_op <= 3'd0;
@@ -385,6 +507,42 @@ module control (
                 next <= fetch1;
             end
 
+            lshift_1: begin
+                read_en <= 4'd0; 
+                write_en <=     16'b0001000000000000; //alu_to_ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd5; //lshift
+                next <=  lshift_1x;
+            end
+
+            lshift_1x: begin
+                read_en <= 4'd0; 
+                write_en <=     16'b0001000000000000; //alu_to_ac
+                inc_en <=       16'b0000000000000010;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd0; //lshift by 1
+                next <= fetch1;
+            end
+
+            rshift_1: begin
+                read_en <= 4'd0; 
+                write_en <=     16'b0001000000000000; //alu_to_ac
+                inc_en <=       16'b0000000000000000;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd6; 
+                next <=  rshift_1x;
+            end
+
+            rshift_1x: begin
+                read_en <= 4'd0; 
+                write_en <=     16'b0001000000000000; //alu_to_ac
+                inc_en <=       16'b0000000000000010;
+                clr_en <=       16'b0000000000000000;
+                alu_op <= 3'd0; //rshift by 1
+                next <= fetch1;
+            end
+
             inac1: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0000000000000000;  //ac
@@ -397,7 +555,7 @@ module control (
             jpnz1: begin
                 read_en <= 4'd0; 
                 write_en <=     16'b0000000000000000;  
-                inc_en <=       16'b0000000000000000;
+                inc_en <=       16'b0000000000000010;
                 clr_en <=       16'b0000000000000000;
                 alu_op <= 3'd0;
 

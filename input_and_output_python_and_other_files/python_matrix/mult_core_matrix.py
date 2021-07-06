@@ -35,45 +35,12 @@ ii = 0
 jj = N
 kk = 2 * N
 
-start_bit = 4094
-#00
-mem1[start_bit] = ii
-mem1[start_bit-1] = jj
-mem1[start_bit-2] = kk
-mem1[start_bit-3] = int(N/2)
-mem1[start_bit-4] = 2*N-int(N/2)
-mem1[start_bit-5] = 3*N
-mem1[start_bit-6] =jj #j reset
-mem1[start_bit-7] = 2*N #k reset
-#11
-mem2[start_bit] = ii+int(N/2)
-mem2[start_bit-1] = jj+int(N/2)
-mem2[start_bit-2] = kk
-mem2[start_bit-3] = N
-mem2[start_bit-4] = 2*N
-mem2[start_bit-5] = 3*N
-mem2[start_bit-6] = jj+int(N/2)
-mem2[start_bit-7] = 2*N
-#10
-mem3[start_bit] = ii+int(N/2)
-mem3[start_bit-1] = jj
-mem3[start_bit-2] = kk
-mem3[start_bit-3] = N
-mem3[start_bit-4] = 2*N-int(N/2)
-mem3[start_bit-5] = 3*N
-mem3[start_bit-6] = jj
-mem3[start_bit-7] = 2*N
-#01
-mem4[start_bit] = ii
-mem4[start_bit-1] = jj+int(N/2)
-mem4[start_bit-2] = kk
-mem4[start_bit-3] = int(N/2)
-mem4[start_bit-4] = 2*N
-mem4[start_bit-5] = 3*N
-mem4[start_bit-6] = jj+int(N/2)
-mem4[start_bit-7] = 2*N
+n_start_bit = 4091
+mem1[n_start_bit] = N
+mem2[n_start_bit] = N
+mem3[n_start_bit] = N
+mem4[n_start_bit] = N
 
-#ik
 for i in range(ii, jj):
     for k in range(kk, 3 * N):
 

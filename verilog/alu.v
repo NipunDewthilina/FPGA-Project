@@ -17,7 +17,9 @@ module alu
             3'd2 : alu_out <= in1 - in2;
             3'd3 : alu_out <= in1 * in2;
             3'd4 : alu_out <= in1 << width_of_i;
-            // default : alu_out <= in1;
+            3'd5 : alu_out <= in1 << 1; //multiplying by 2
+            3'd6 : alu_out <= in1 >> 1; //dividing by 2
+            3'd0 : alu_out <= in1;
         endcase
 
         if (alu_out == 0)

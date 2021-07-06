@@ -1,13 +1,29 @@
-//Remember : all the inputs from bus are 17 bits, outputs to the bus is 12 bits.
+//Remember : all the inputs from bus are 18 bits, outputs to the bus is 12 bits.
 `timescale 1ns/1ps
 module datamemory #(
     parameter N
 ) (
 	input clk,
-    input write_en_1,
-    input write_en_2,
-    input write_en_3,
-    input write_en_4,
+    input dm_en1,
+    input dm_en1_ram1,
+    input dm_en1_ram2,
+    input dm_en1_ram3,
+	input dm_en1_ram4,
+	input dm_en2,
+    input dm_en2_ram1,
+    input dm_en2_ram2,
+    input dm_en2_ram3,
+	input dm_en2_ram4,
+	input dm_en3,
+    input dm_en3_ram1,
+    input dm_en3_ram2,
+    input dm_en3_ram3,
+	input dm_en3_ram4,
+	input dm_en4,
+    input dm_en4_ram1,
+    input dm_en4_ram2,
+    input dm_en4_ram3,
+	input dm_en4_ram4,
 	input [11:0] addr_tb,
     input [11:0] addr1, //[N-1:0]
     input [11:0] addr2, //[N-1:0]
@@ -228,14 +244,20 @@ module datamemory #(
     always @(posedge clk) begin
         result <= ram1[addr_tb] | ram2[addr_tb] | ram3[addr_tb] | ram4[addr_tb];
 		start_process <=  1;
-        if (write_en_1 == 1)
+        if (dm_en1 == 1 ||dm_en2 ==1 ||dm_en3==1 ||dm_en4==1)begin
             ram1[addr1] <= datain1[11:0];
-        if (write_en_2 == 1)
+			ram2[addr2]<= datain2[11:0];
+			ram3[addr3]<= datain3[11:0];
+			ram4[addr4]<= datain4[11:0];
+		end
+        if (dm_en1_ram1 == 1 )
+            ram1[addr1] <= datain1[11:0];
+        if (dm_en2_ram2 ==1 )
             ram2[addr2]<= datain2[11:0];
-        if (write_en_3 == 1)
+        if (dm_en3_ram3==1 )
             ram3[addr3]<= datain3[11:0];
-        if (write_en_4 == 1)
-            ram4[addr4]<= datain4[11:0];
+		if (dm_en4_ram4==1)
+			ram4[addr4]<= datain4[11:0];
         else begin
             dataout1 <= ram1[addr1];
             dataout2 <= ram2[addr2];
