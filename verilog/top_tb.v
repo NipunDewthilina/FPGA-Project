@@ -45,9 +45,9 @@ initial begin
 				i <= i+1;
                 $fwrite(file_id,"%d\n ",result);
                 
-				if (i == 64) begin
-				$fclose(file_id);
-				$stop;
+				if (i == 512) begin
+                    $fclose(file_id);
+                    $stop;
 				end
 		end
 		#(CLK_PERIOD*4);

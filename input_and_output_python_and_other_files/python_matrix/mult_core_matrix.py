@@ -176,6 +176,7 @@ with open('addr_mem.txt', 'w') as file:
         # print(i)
         # print(str(i)+'\n')
 
+#matrix multiplication for verification
 resultant = []
 
 for i in range(N):

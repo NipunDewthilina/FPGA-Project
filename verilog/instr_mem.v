@@ -128,7 +128,7 @@ output reg[width_out-1:0] instr_out
         ram[ 36] = mvac_addr;
         ram[ 37] = mvr1ac_addr;
         ram[ 38] = add_addr;
-        ram[ 39] = mvacr1_addr;
+        ram[ 39] = mvacr1_addr;//r1 loading over
         ram[ 40] = ldiac_k;
         ram[ 41]  = nop_addr;
         ram[ 42]  = nop_addr;
@@ -157,8 +157,8 @@ output reg[width_out-1:0] instr_out
         ram[ 65] = mvacr1_addr;
         ram[ 66]  = nop_addr;
         ram[ 67]  = nop_addr;
-        ram[ 68] = ldiac_k_2n;
-        ram[ 69] = stac_k;
+        ram[ 68] = ldiac_k_2n;//k init value
+        ram[ 69] = stac_k;//reset k
         ram[ 70]  = nop_addr;
         ram[ 71]  = nop_addr;
         ram[ 72] = ldiac_j; //loop2

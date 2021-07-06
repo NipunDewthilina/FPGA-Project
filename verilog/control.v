@@ -133,14 +133,14 @@ module control (
                 next <= ldac2;
             end
 
-            ldac1x : begin
-                read_en <= 4'd0; //ac
-                write_en <=     16'b0000000000000000; //ar
-                inc_en <=       16'b0000000000000000;
-                clr_en <=       16'b0000000000000000;
-                alu_op <= 3'd0;
-                next <= ldac1x;
-            end
+            // ldac1x : begin
+            //     read_en <= 4'd0; //ac
+            //     write_en <=     16'b0000000000000000; //ar
+            //     inc_en <=       16'b0000000000000000;
+            //     clr_en <=       16'b0000000000000000;
+            //     alu_op <= 3'd0;
+            //     next <= ldac1x;
+            // end
 
             ldac2: begin //Read DM Write AC
                 read_en <= 4'd12; //DM
@@ -160,7 +160,7 @@ module control (
                 next <= ldiac1x;
             end
 
-            ldiac1x : begin
+            ldiac1x : begin //
                 read_en <= 4'd0; //ac
                 write_en <=     16'b0000000000000000; //ar
                 inc_en <=       16'b0000000000000000;
