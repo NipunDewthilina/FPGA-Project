@@ -1,0 +1,17 @@
+module addr_map(
+    input [11:0] addr1,
+    input [11:0] addr2,
+    input [11:0] addr3,
+    input [11:0] addr4,
+    output reg [11:0] addr1_reg,
+    output reg [11:0] addr2_reg,
+    output reg [11:0] addr3_reg,
+    output reg [11:0] addr4_reg
+);
+
+always @(posedge clk) begin
+    addr1_reg <= addr1;
+    addr2_reg <= addr2-9;
+    addr3_reg <= addr3-18;
+    addr4_reg <= addr4-27;
+end

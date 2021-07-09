@@ -41,10 +41,11 @@ initial begin
     repeat(100000) begin
         @ (posedge clk) 
         if (end_process1 && end_process2 && end_process3 && end_process4) begin
+
             addr_tb <= addr_mem[i];
 				i <= i+1;
                 $fwrite(file_id,"%d\n ",result);
-                
+                $display(result);
 				if (i == 512) begin
                     $fclose(file_id);
                     $stop;

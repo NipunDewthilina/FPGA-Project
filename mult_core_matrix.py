@@ -53,6 +53,8 @@ if (max(N1,N2,N3) == N3):
         N = N3
     else:
         N = N3+1
+
+print(N)
     
 ii = 0
 jj = N
@@ -178,16 +180,16 @@ with open('addr_mem.txt', 'w') as file:
 
 #matrix multiplication for verification
 resultant = []
-
-for i in range(N):
-    row = []
-    for j in range(N):
-        row.append(0)
-    resultant.append(row)
+print("Result Matrix: ")
+# for i in range(N):
+#     row = []
+#     for j in range(N):
+#         row.append(0)
+#     resultant.append(row)
         
-for i in range(N):
-    for j in range(int(N)):
-        for k in range(int(N)) :
-            resultant[i][j] += a[i][k] * b[k][j] 
+# for i in range(N):
+#     for j in range(int(N)):
+#         for k in range(int(N)) :
+#             resultant[i][j] += a[i][k] * b[k][j] 
 
-print(resultant)
+print(res_np)
